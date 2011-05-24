@@ -1,0 +1,86 @@
+\documentclass[18pt]{beamer}
+\usetheme{Madrid}
+
+\usepackage{graphics}
+
+
+\newcommand{\centeredlargetext}[3]{
+{
+\setbeamertemplate{navigation symbols}{}
+\setbeamercolor{background canvas}{bg={#1}}
+\color{#2}
+\begin{frame}[plain]
+\fontsize{36pt}{36pt}\selectfont
+\center
+\begin{center}
+{#3}
+\end{center}
+\end{frame}
+}}
+
+\newcommand{\centeredhugetext}[3]{
+{
+\setbeamertemplate{navigation symbols}{}
+\setbeamercolor{background canvas}{bg={#1}}
+\fontsize{72pt}{72pt}\selectfont
+\color{#2}
+\begin{frame}[plain]
+\center
+\begin{center}
+{#3}
+\end{center}
+\end{frame}
+}}
+
+
+\begin{document}
+
+\title[ITK - OpenCV]{ITK Meets OpenCV}
+\subtitle[ITK-OpenCV]{A New Open Source Software Resource for CV}
+\institute[Insight Software Consortium]{Insight Software Consortium}
+\date[June 2011]{June 2011}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[plain]
+\center
+\begin{center}
+This presentation is copyrighted by\\
+The \textbf{Insight Software Consortium}\\
+\bigskip
+distributed under the\\
+\textbf{Creative Commons by Attribution License 3.0}\\
+\url{http://creativecommons.org/licenses/by/3.0}\\
+\bigskip
+Images used in this presentation are attributed in the last slide.
+\end{center}
+\end{frame}
+}
+
+
+\begin{frame}
+  \tableofcontents
+\end{frame}
+
+
+\centeredlargetext{white}{black}{
+ITK
+}
+
+\centeredlargetext{white}{black}{
+OpenCV
+}
+
+\centeredlargetext{white}{black}{
+Using ITK from OpenCV
+}
+
+
+\section{Introduction}
+
+\end{document}
