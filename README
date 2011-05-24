@@ -9,3 +9,4 @@ This tutorial introduces the software bridge between ITK and OpenCV.
 The goal is to illustrate how ITK image analysis functionalities can
 be used from OpenCV applications.
 
+Source code examples are distributed under the Apache 2.0 License.
