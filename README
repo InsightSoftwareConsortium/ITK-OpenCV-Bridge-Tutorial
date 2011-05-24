@@ -1,0 +1,11 @@
+This presentation is copyrighted by the Insight Software Consortium
+and it is publicly distributed under the:
+
+          Creative Commons by Attribution License 3.0
+          http://creativecommons.org/licenses/by/3.0/
+
+
+This tutorial introduces the software bridge between ITK and OpenCV.
+The goal is to illustrate how ITK image analysis functionalities can
+be used from OpenCV applications.
+
