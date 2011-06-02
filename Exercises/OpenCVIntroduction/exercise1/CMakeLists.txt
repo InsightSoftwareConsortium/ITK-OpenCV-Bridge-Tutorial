@@ -1,0 +1,4 @@
+PROJECT( HelloWorldOpenCV )
+FIND_PACKAGE( OpenCV REQUIRED )
+ADD_EXECUTABLE( HelloWorldOpenCV HelloWorldOpenCV.cxx )
+TARGET_LINK_LIBRARIES( HelloWorldOpenCV ${OpenCV_LIBS} )
