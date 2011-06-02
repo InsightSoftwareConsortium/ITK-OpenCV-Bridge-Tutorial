@@ -1,11 +1,28 @@
 project(ITKOpenCVBridgeTutorialPresentation)
 
+
+#
+#  Copy the tex files to the binary build directory
+#
 file(GLOB TEX_FILES *.tex)
 
 file(
   COPY  ${TEX_FILES}
   DESTINATION ${ITKOpenCVBridgeTutorialPresentation_BINARY_DIR}
   )
+
+
+#
+#  Copy the .cxx files to the binary build directory
+#  to make easier to source them as code snippets.
+#
+#  This CXX_FILES variable is populated in the top CMakeLists.txt file
+#
+file(
+  COPY  ${CXX_FILES}
+  DESTINATION ${ITKOpenCVBridgeTutorialPresentation_BINARY_DIR}
+  )
+
 
 #
 # This adds a custom target that generates the output document
