@@ -2,6 +2,8 @@ project( HelloWorldOpenCV )
 
 find_package( OpenCV REQUIRED )
 
-add_executable( HelloWorldOpenCV HelloWorldOpenCV.cxx )
+add_executable( BasicFilteringOpenCV BasicFilteringOpenCV.cxx )
+target_link_libraries( BasicFilteringOpenCV ${OpenCV_LIBS} )
 
-target_link_libraries( HelloWorldOpenCV ${OpenCV_LIBS} )
+add_executable( BasicFilteringOpenCVAnswer BasicFilteringOpenCVAnswer.cxx )
+target_link_libraries( BasicFilteringOpenCVAnswer ${OpenCV_LIBS} )
