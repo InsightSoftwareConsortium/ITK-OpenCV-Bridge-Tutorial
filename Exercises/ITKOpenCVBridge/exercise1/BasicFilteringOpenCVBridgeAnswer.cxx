@@ -16,6 +16,12 @@
  *
  *=========================================================================*/
 
+#include <cv.h>
+#include <highgui.h>
+#include <itkImage.h>
+#include <itkMedianImageFilter.h>
+#include <itkOpenCVImageBridge.h>
+
 int main ( int argc, char **argv )
 {
   // from previous example replace ITK Median filter with CurvatureFlow, and metion also GradientAnisotropicDiffusion, variants of ITK Filters.
