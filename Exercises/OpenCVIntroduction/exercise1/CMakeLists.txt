@@ -1,4 +1,4 @@
-project( HelloWorldOpenCV )
+project( BasicFilteringOpenCV )
 
 find_package( OpenCV REQUIRED )
 
