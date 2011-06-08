@@ -27,7 +27,7 @@
 #include <itkOpenCVVideoIOFactory.h>
 
 /**
- * Use ITK's Video pipeline to process a video using a median filter on each frame
+ * Use ITK's Video pipeline to process a video using a Curvature Flow filter on each frame
  */
 int main ( int argc, char **argv )
 {
@@ -40,19 +40,19 @@ int main ( int argc, char **argv )
     }
 
   // Set up typedefs for ITK
-  const unsigned int Dimension =                                    2;
-  typedef unsigned char InputPixelType;
-  typedef float OutputPixelType;
-  typedef itk::Image< InputPixelType, Dimension > InputFrameType;
-  typedef itk::Image< OutputPixelType, Dimension > OutputFrameType;
-  typedef itk::VideoStream< InputFrameType > InputVideoType;
-  typedef itk::VideoStream< OutputFrameType > OutputVideoType;
+  const unsigned int Dimension =                                           2;
+  typedef unsigned char                                                    InputPixelType;
+  typedef float                                                            OutputPixelType;
+  typedef itk::Image< InputPixelType, Dimension >                          InputFrameType;
+  typedef itk::Image< OutputPixelType, Dimension >                         OutputFrameType;
+  typedef itk::VideoStream< InputFrameType >                               InputVideoType;
+  typedef itk::VideoStream< OutputFrameType >                              OutputVideoType;
   typedef itk::CurvatureFlowImageFilter< InputFrameType, OutputFrameType > ImageFilterType;
-  typedef itk::ImageFilterToVideoFilterWrapper< ImageFilterType > VideoFilterType;
-  typedef itk::VideoFileReader< InputVideoType > ReaderType;
-  typedef itk::VideoFileWriter< InputVideoType > WriterType;
-  typedef itk::CastImageFilter< OutputFrameType, InputFrameType > CastImageFilterType;
-  typedef itk::ImageFilterToVideoFilterWrapper< CastImageFilterType > CastVideoFilterType;
+  typedef itk::ImageFilterToVideoFilterWrapper< ImageFilterType >          VideoFilterType;
+  typedef itk::VideoFileReader< InputVideoType >                           ReaderType;
+  typedef itk::VideoFileWriter< InputVideoType >                           WriterType;
+  typedef itk::CastImageFilter< OutputFrameType, InputFrameType >          CastImageFilterType;
+  typedef itk::ImageFilterToVideoFilterWrapper< CastImageFilterType >      CastVideoFilterType;
 
   // Let the ITK IO factory know that we're using OpenCV for IO
   itk::ObjectFactoryBase::RegisterFactory( itk::OpenCVVideoIOFactory::New() );
