@@ -40,16 +40,16 @@ int main ( int argc, char **argv )
 
   // Set up typedefs for ITK
   const unsigned int Dimension =                                    2;
-  typedef unsigned char InputPixelType;
-  typedef unsigned char OutputPixelType;
-  typedef itk::Image< InputPixelType, Dimension > InputFrameType;
-  typedef itk::Image< OutputPixelType, Dimension > OutputFrameType;
-  typedef itk::VideoStream< InputFrameType > InputVideoType;
-  typedef itk::VideoStream< OutputFrameType > OutputVideoType;
+  typedef unsigned char                                             InputPixelType;
+  typedef unsigned char                                             OutputPixelType;
+  typedef itk::Image< InputPixelType, Dimension >                   InputFrameType;
+  typedef itk::Image< OutputPixelType, Dimension >                  OutputFrameType;
+  typedef itk::VideoStream< InputFrameType >                        InputVideoType;
+  typedef itk::VideoStream< OutputFrameType >                       OutputVideoType;
   typedef itk::MedianImageFilter< InputFrameType, OutputFrameType > ImageFilterType;
-  typedef itk::ImageFilterToVideoFilterWrapper< ImageFilterType > VideoFilterType;
-  typedef itk::VideoFileReader< InputVideoType > ReaderType;
-  typedef itk::VideoFileWriter< OutputVideoType > WriterType;
+  typedef itk::ImageFilterToVideoFilterWrapper< ImageFilterType >   VideoFilterType;
+  typedef itk::VideoFileReader< InputVideoType >                    ReaderType;
+  typedef itk::VideoFileWriter< OutputVideoType >                   WriterType;
 
   // Let the ITK IO factory know that we're using OpenCV for IO
   itk::ObjectFactoryBase::RegisterFactory( itk::OpenCVVideoIOFactory::New() );
