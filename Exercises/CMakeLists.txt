@@ -3,3 +3,4 @@
 #
 add_subdirectory( OpenCVIntroduction )
 add_subdirectory( ITKOpenCVBridge )
+add_subdirectory( ITKVideoPipeline )
