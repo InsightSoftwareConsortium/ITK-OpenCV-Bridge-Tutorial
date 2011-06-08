@@ -25,7 +25,7 @@
 #include <itkOpenCVImageBridge.h>
 
 /**
- * Using OpenCV and ITK, open a video (cv), apply a median filter to each frame
+ * Using OpenCV and ITK, open a video (cv), apply a Median filter to each frame
  * (itk) and write it back out (cv).
  */
 int main ( int argc, char **argv )

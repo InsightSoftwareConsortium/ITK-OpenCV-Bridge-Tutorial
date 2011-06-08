@@ -23,7 +23,6 @@
 #include <itkImage.h>
 #include <itkRGBPixel.h>
 #include <itkCurvatureFlowImageFilter.h>
-#include <itkCastImageFilter.h>
 #include <itkOpenCVImageBridge.h>
 
 /**
@@ -57,39 +56,40 @@ int main ( int argc, char **argv )
   cv::VideoWriter writer( std::string(argv[2]), fourcc, fps, cv::Size(width, height));
 
 
-  // Set up typedefs for ITK -- OpenCV requires frames to have 3 channels while
-  // the MedianImageFilter requires scalar input, so here we use the scalar
-  // "unsigned char" as the input pixel type and itk's RGBPixel as the output
-  // pixel type.
+  // Set up typedefs for ITK
   const unsigned int Dimension =                                           2;
   typedef unsigned char                                                    InputPixelType;
   typedef float                                                            OutputPixelType;
   typedef itk::Image< InputPixelType, Dimension >                          InputImageType;
   typedef itk::Image< OutputPixelType, Dimension >                         OutputImageType;
   typedef itk::CurvatureFlowImageFilter< InputImageType, OutputImageType > FilterType;
-  typedef itk::CastImageFilter< OutputImageType, InputImageType >          CastFilterType;
 
   // Set up ITK filters
   FilterType::Pointer filter = FilterType::New();
-  CastFilterType::Pointer caster = CastFilterType::New();
   filter->SetTimeStep( 0.5 );
   filter->SetNumberOfIterations( 20 );
-  caster->SetInput( filter->GetOutput() );
 
   // Loop through the frames of the video and apply the filter using ITK
-  cv::Mat frame;
-  while(cap.grab() && cap.retrieve(frame))
+  cv::Mat frameIn;
+  cv::Mat frameOut;
+  while( cap.grab() && cap.retrieve(frameIn) )
     {
     // Convert the frame to ITK
     InputImageType::Pointer itkFrame =
-      itk::OpenCVImageBridge::CVMatToITKImage< InputImageType >( frame );
+      itk::OpenCVImageBridge::CVMatToITKImage< InputImageType >( frameIn );
 
     // Filter the frame and cast to writable pixel type
     filter->SetInput(itkFrame);
-    caster->Update();
+    filter->Update();
+
+    // Convert the frame back to OpenCV and force the output to have 3 channels
+    frameOut = itk::OpenCVImageBridge::ITKImageToCVMat< OutputImageType >( filter->GetOutput(), true );
+
+    // Convert the data to unsigned char so it can be written
+    frameOut.convertTo( frameOut, CV_8U );
 
     // Write the frame out
-    writer << itk::OpenCVImageBridge::ITKImageToCVMat< InputImageType >( caster->GetOutput(), true );
+    writer << frameOut;
     }
 
   return 0;
