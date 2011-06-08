@@ -42,26 +42,23 @@ int main ( int argc, char **argv )
   if (!cap.isOpened())
     {
     std::cout << "Failed to open video from " << argv[1] << std::endl;
-    sreturn -1;
+    return -1;
     }
 
-  //DEBUG
-  std::cout << "Opened the capture" << std::endl;
-
   // Set up parameters for writer
-  int fourcc = CV_FOURCC( 'j','p','e','g' );
+  int fourcc = CV_FOURCC( 'M','P','4','2' );
   double fps = cap.get( CV_CAP_PROP_FPS );
   int width = static_cast<int>( cap.get( CV_CAP_PROP_FRAME_WIDTH ) );
   int height = static_cast<int>( cap.get( CV_CAP_PROP_FRAME_HEIGHT ) );
 
   // Set up writer
-  cv::VideoWriter writer( std::string(argv[1]), fourcc, fps, cv::Size(width, height));
+  cv::VideoWriter writer( std::string(argv[2]), fourcc, fps, cv::Size(width, height));
 
 
   // Set up typedefs for ITK
+  const unsigned int Dimension =                                    2;
   typedef unsigned char                                             InputPixelType;
   typedef unsigned char                                             OutputPixelType;
-  const unsigned int Dimension =                                    2;
   typedef itk::Image< InputPixelType, Dimension >                   InputImageType;
   typedef itk::Image< OutputPixelType, Dimension >                  OutputImageType;
   typedef itk::MedianImageFilter< InputImageType, OutputImageType > FilterType;
@@ -73,19 +70,10 @@ int main ( int argc, char **argv )
   neighborhoodRadius[1] = 10;
   filter->SetRadius( neighborhoodRadius );
 
-
-  //DEBUG
-  std::cout << "Starting the loop at frame " << cap.get(CV_CAP_PROP_POS_FRAMES) << std::endl;
-  std::cout << "Total number of frames: " << cap.get(CV_CAP_PROP_FRAME_COUNT) << std::endl;
-
   // Loop through the frames of the video and apply the filter using ITK
   cv::Mat frame;
   while(cap.grab() && cap.retrieve(frame))
     {
-
-    //DEBUG
-    std::cout << "Working on frame " << cap.get(CV_CAP_PROP_POS_FRAMES) << std::endl;
-
     // Convert the frame to ITK
     InputImageType::Pointer itkFrame =
       itk::OpenCVImageBridge::CVMatToITKImage< InputImageType >( frame );
@@ -95,7 +83,7 @@ int main ( int argc, char **argv )
     filter->Update();
 
     // Write the frame out
-    writer << itk::OpenCVImageBridge::ITKImageToCVMat< OutputImageType >( filter->GetOutput() );
+    writer << itk::OpenCVImageBridge::ITKImageToCVMat< OutputImageType >( filter->GetOutput(), true );
     }
 
   return 0;

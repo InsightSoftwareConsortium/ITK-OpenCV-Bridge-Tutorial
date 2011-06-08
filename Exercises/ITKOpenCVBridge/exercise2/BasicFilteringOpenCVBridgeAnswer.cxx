@@ -15,21 +15,23 @@
  *  limitations under the License.
  *
  *=========================================================================*/
+
 #include <iostream>
 
 #include <highgui.h>
 
 #include <itkImage.h>
+#include <itkRGBPixel.h>
 #include <itkCurvatureFlowImageFilter.h>
+#include <itkCastImageFilter.h>
 #include <itkOpenCVImageBridge.h>
 
 /**
- * Use OpenCV and ITK to apply a Curvature Flow filter to an image. Set the
- * TimeStep of the filter to 0.5 and the NumberOfIterations to 20.
+ * Using OpenCV and ITK, open a video (cv), apply a Curvature Flow filter to
+ * each frame (itk) and write it back out (cv).
  */
 int main ( int argc, char **argv )
 {
-
   // Check arguments
   if( argc < 3 )
     {
@@ -37,34 +39,58 @@ int main ( int argc, char **argv )
     return -1;
     }
 
-  // Set up typedefs for ITK
+  // Open thge file with OpenCV
+  cv::VideoCapture cap( argv[1] );
+  if (!cap.isOpened())
+    {
+    std::cout << "Failed to open video from " << argv[1] << std::endl;
+    return -1;
+    }
+
+  // Set up parameters for writer
+  int fourcc = CV_FOURCC( 'M','P','4','2' );
+  double fps = cap.get( CV_CAP_PROP_FPS );
+  int width = static_cast<int>( cap.get( CV_CAP_PROP_FRAME_WIDTH ) );
+  int height = static_cast<int>( cap.get( CV_CAP_PROP_FRAME_HEIGHT ) );
+
+  // Set up writer
+  cv::VideoWriter writer( std::string(argv[2]), fourcc, fps, cv::Size(width, height));
+
+
+  // Set up typedefs for ITK -- OpenCV requires frames to have 3 channels while
+  // the MedianImageFilter requires scalar input, so here we use the scalar
+  // "unsigned char" as the input pixel type and itk's RGBPixel as the output
+  // pixel type.
+  const unsigned int Dimension =                                           2;
   typedef unsigned char                                                    InputPixelType;
   typedef float                                                            OutputPixelType;
-  const unsigned int Dimension =                                           2;
   typedef itk::Image< InputPixelType, Dimension >                          InputImageType;
   typedef itk::Image< OutputPixelType, Dimension >                         OutputImageType;
   typedef itk::CurvatureFlowImageFilter< InputImageType, OutputImageType > FilterType;
+  typedef itk::CastImageFilter< OutputImageType, InputImageType >          CastFilterType;
 
-  // Open thge file with OpenCV
-  cv::Mat openCVImage = cv::imread( argv[1] );
-
-  // Convert the image to ITK
-  InputImageType::Pointer itkImage =
-    itk::OpenCVImageBridge::CVMatToITKImage< InputImageType >( openCVImage );
-
-  // Set up the ITK filter
+  // Set up ITK filters
   FilterType::Pointer filter = FilterType::New();
+  CastFilterType::Pointer caster = CastFilterType::New();
   filter->SetTimeStep( 0.5 );
   filter->SetNumberOfIterations( 20 );
+  caster->SetInput( filter->GetOutput() );
 
-  // Set the converted image as input and run the filter
-  filter->SetInput( itkImage );
-  filter->Update();
+  // Loop through the frames of the video and apply the filter using ITK
+  cv::Mat frame;
+  while(cap.grab() && cap.retrieve(frame))
+    {
+    // Convert the frame to ITK
+    InputImageType::Pointer itkFrame =
+      itk::OpenCVImageBridge::CVMatToITKImage< InputImageType >( frame );
 
-  // Convert back to OpenCV and write the image out
-  cv::imwrite( argv[2],
-    itk::OpenCVImageBridge::ITKImageToCVMat< OutputImageType >( filter->GetOutput() ) );
+    // Filter the frame and cast to writable pixel type
+    filter->SetInput(itkFrame);
+    caster->Update();
 
+    // Write the frame out
+    writer << itk::OpenCVImageBridge::ITKImageToCVMat< InputImageType >( caster->GetOutput(), true );
+    }
 
   return 0;
 }
