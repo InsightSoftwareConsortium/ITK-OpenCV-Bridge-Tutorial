@@ -76,3 +76,27 @@ and standard library headers for {\tt cout} and {\tt string}
 \lstinputlisting[linerange={55-60}]{BasicFilteringOpenCV.cxx}
 \end{center}
 \end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Exercise 1}
+\begin{center}
+\begin{itemize}
+\item Replace the median filter with a Canny edge detector
+\end{itemize}
+\lstinputlisting[numbers=left,linerange={38-41}]{BasicFilteringOpenCV.cxx}
+\begin{itemize}
+\item Hint: The OpenCV Canny function has this signature
+\end{itemize}
+\begin{lstlisting}
+void Canny(const Mat& image, Mat& edges, double threshold1, double threshold2);
+\end{lstlisting}
+\begin{itemize}
+\item Canny requires grayscale image input, but our images are color
+\item Hint: Use this function to convert a color space
+\end{itemize}
+\begin{lstlisting}
+void cvtColor(const Mat& src, Mat& dst, int code);
+\end{lstlisting}
+\end{center}
+\end{frame}
