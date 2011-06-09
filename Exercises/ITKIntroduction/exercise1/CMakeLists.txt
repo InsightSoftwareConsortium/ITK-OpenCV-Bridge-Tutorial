@@ -6,6 +6,10 @@ endif(COMMAND CMAKE_POLICY)
 project(ITKBasicImageFiltering)
 
 find_package(ITK REQUIRED)
+include(${ITK_USE_FILE})
 
 add_executable(BasicImageFilteringITK BasicImageFilteringITK.cxx )
 target_link_libraries(BasicImageFilteringITK ${ITK_LIBRARIES})
+
+add_executable(BasicImageFilteringITKAnswer BasicImageFilteringITKAnswer.cxx )
+target_link_libraries(BasicImageFilteringITKAnswer ${ITK_LIBRARIES})
