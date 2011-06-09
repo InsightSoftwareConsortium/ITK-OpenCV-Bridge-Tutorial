@@ -5,11 +5,48 @@
 ITK OpenCV Bridge
 }
 
-
 \begin{frame}
-\frametitle{Elements}
+\frametitle{Introduction}
 \begin{itemize}
+\item ITK Module for working with other libraries
+\item Moving frame and/or video data between OpenCV and ITK
+\item Bring biomedical and computer vision folks together
 \item \url{https://github.com/itkvideo/ITK}
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Funding Source}
+\begin{itemize}
+\item Contract from the National Library of Medicine (HHSN276201000579P)
+\item Algorithms, Adapters \& Data Distribution Outreach 2010: Increasing the Impact of the Insight Toolkit (ITK)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Design Choices}
+\begin{itemize}
+\item OpenCV users and ITK users should both be comfortable
+\item Image to image utility functions
+\item cv::Source to itk::VideoStream
+\item (Later) Focus on performance
+\end{itemize}
+\end{frame}
+
+\centeredlargetext{white}{black}{
+Basic Image Filtering (Revisited)
+}
+
+
+\begin{frame}
+\frametitle{Include Header Files}
+\begin{center}
+We include ITK and OpenCV headers (like before):
+\lstinputlisting[linerange={21-21}]{BasicFilteringOpenCVBridge.cxx}
+\lstinputlisting[linerange={23-24}]{BasicFilteringOpenCVBridge.cxx}
+\vspace{1 em}
+We also need to include the bridge header:
+\lstinputlisting[linerange={25-25}]{BasicFilteringOpenCVBridge.cxx}
+\end{center}
 \end{frame}
 
