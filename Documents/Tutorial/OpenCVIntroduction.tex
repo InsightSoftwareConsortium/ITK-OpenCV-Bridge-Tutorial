@@ -7,16 +7,72 @@ OpenCV Introduction
 
 
 \centeredlargetext{white}{black}{
-Hello Wold !
+A Basic Image Filtering Example
 }
 
 
 \begin{frame}
-\frametitle{Hello World !}
-
+\frametitle{Include Header Files}
 \begin{center}
-\lstinputlisting[linerange={21-23}]{BasicFilteringOpenCV.cxx}
+We need to include the OpenCV headers
+\lstinputlisting[linerange={19-20}]{BasicFilteringOpenCV.cxx}
+\pause
+\vspace{1 em}
+and standard library headers for {\tt cout} and {\tt string}
+\lstinputlisting[linerange={22-23}]{BasicFilteringOpenCV.cxx}
 \end{center}
 
 \end{frame}
 
+
+\begin{frame}
+\frametitle{The Main function}
+\begin{center}
+\lstinputlisting[linerange={26-34,42-45,54-57,60-63}]{BasicFilteringOpenCV.cxx}
+\begin{itemize}
+\item If no arguments, print usage and exit
+\item If one argument, process an image and display the results
+\item If two arguments, process an image and save to a file
+\end{itemize}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Loading an Image / Applying a Filter}
+\begin{center}
+\begin{itemize}
+\item Load an image from the specified file into a matrix object
+\end{itemize}
+\lstinputlisting[linerange={36-37}]{BasicFilteringOpenCV.cxx}
+\pause
+\begin{itemize}
+\item Create a matrix for the output and apply a median filter
+\end{itemize}
+\lstinputlisting[linerange={38-41}]{BasicFilteringOpenCV.cxx}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Displaying an Image}
+\begin{center}
+\begin{itemize}
+\item Use OpenCV HighGUI to display the resulting image
+\end{itemize}
+\lstinputlisting[linerange={43-54}]{BasicFilteringOpenCV.cxx}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Saving an Image}
+\begin{center}
+\begin{itemize}
+\item Write the image to the specified file
+\end{itemize}
+\lstinputlisting[linerange={55-60}]{BasicFilteringOpenCV.cxx}
+\end{center}
+\end{frame}
