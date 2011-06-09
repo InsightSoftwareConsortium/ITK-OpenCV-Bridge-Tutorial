@@ -18,65 +18,58 @@
 
 #include <iostream>
 
+#include <cv.h>
 #include <highgui.h>
 
 #include <itkImage.h>
 #include <itkMedianImageFilter.h>
 #include <itkOpenCVImageBridge.h>
 
-/**
- * Using OpenCV and ITK, open an image (cv), apply a median filter (itk) and
- * write it back out (cv).
- */
 int main ( int argc, char **argv )
 {
-  // Check arguments
-  if( argc < 3 )
-    {
-    std::cout << "Usage: " << argv[0] << " <input> <output>" << std::endl;
+  if( argc < 2 )
+  {
+    std::cout << "Usage: "<< argv[0] <<" input_image output_image"<<std::endl;
     return -1;
-    }
+  }
 
-  // Open thge file with OpenCV
-  cv::Mat openCVImage = cv::imread( argv[1] );
+  cv::Mat inputImage = cv::imread( argv[1] );
 
+  typedef unsigned char                            InputPixelType;
+  typedef unsigned char                            OutputPixelType;
+  const unsigned int Dimension =                   2;
+  typedef itk::Image< InputPixelType, Dimension >  InputImageType;
+  typedef itk::Image< OutputPixelType, Dimension > OutputImageType;
+  typedef itk::OpenCVImageBridge                   BridgeType;
+  typedef itk::MedianImageFilter< InputImageType, OutputImageType > 
+                                                   FilterType;
 
-  //---------------------------------------------------------------------------
-  // Use ITK's Median filter instead of OpenCV's
-  //
-
-  // Set up typedefs for ITK
-  typedef unsigned char                                             InputPixelType;
-  typedef unsigned char                                             OutputPixelType;
-  const unsigned int Dimension =                                    2;
-  typedef itk::Image< InputPixelType, Dimension >                   InputImageType;
-  typedef itk::Image< OutputPixelType, Dimension >                  OutputImageType;
-  typedef itk::MedianImageFilter< InputImageType, OutputImageType > FilterType;
-
-  // Convert the image to ITK
   InputImageType::Pointer itkImage =
-    itk::OpenCVImageBridge::CVMatToITKImage< InputImageType >( openCVImage );
+    BridgeType::CVMatToITKImage< InputImageType >( inputImage );
 
-  // Set up the ITK filter
   FilterType::Pointer filter = FilterType::New();
   InputImageType::SizeType neighborhoodRadius;
-  neighborhoodRadius[0] = 10;
-  neighborhoodRadius[1] = 10;
+  neighborhoodRadius[0] = 9;
+  neighborhoodRadius[1] = 9;
   filter->SetRadius( neighborhoodRadius );
 
-  // Set the converted image as input and run the filter
   filter->SetInput( itkImage );
   filter->Update();
 
+  cv::Mat resultImage =
+    BridgeType::ITKImageToCVMat< OutputImageType >( filter->GetOutput() );
 
-  //---------------------------------------------------------------------------
-  // Convert back to OpenCV to write the image out
-  //
-  cv::imwrite( argv[2],
-    itk::OpenCVImageBridge::ITKImageToCVMat< OutputImageType >( filter->GetOutput() ) );
-
-
+  if(argc < 3)
+  {
+    std::string windowName = "Exercise 1: Basic Filtering in OpenCV & ITK";
+    cv::namedWindow( windowName, CV_WINDOW_FREERATIO);
+    cv::imshow( windowName, resultImage );
+    cv::waitKey();
+  }
+  else
+  {
+    cv::imwrite( argv[2], resultImage );
+  }
 
   return 0;
 }
-
