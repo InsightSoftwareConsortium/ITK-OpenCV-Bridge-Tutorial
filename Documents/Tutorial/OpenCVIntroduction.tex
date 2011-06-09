@@ -12,10 +12,28 @@ A Basic Image Filtering Example
 
 
 \begin{frame}
-\frametitle{Hello World !}
-
+\frametitle{Include Header Files}
 \begin{center}
-\lstinputlisting[linerange={21-23}]{HelloWorldOpenCV.cxx}
+We need to include the OpenCV headers
+\lstinputlisting[linerange={19-20}]{BasicFilteringOpenCV.cxx}
+\pause
+\vspace{1 em}
+and standard library headers for {\tt cout} and {\tt string}
+\lstinputlisting[linerange={22-23}]{BasicFilteringOpenCV.cxx}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{The Main function}
+\begin{center}
+\lstinputlisting[linerange={26-34,42-45,54-57,60-63}]{BasicFilteringOpenCV.cxx}
+\begin{itemize}
+\item If no arguments, print usage and exit
+\item If one argument, process an image and display the results
+\item If two arguments, process an image and save to a file
+\end{itemize}
 \end{center}
 
 \end{frame}
