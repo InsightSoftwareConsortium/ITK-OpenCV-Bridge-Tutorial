@@ -37,7 +37,7 @@ int main ( int argc, char **argv )
   cv::Mat inputImage = cv::imread( argv[1] );
   // create a matrix object to store the resulting image
   cv::Mat resultImage;
-  // apply median filtering to the input image using a 5x5 window
+  // apply median filtering to the input image using a 9x9 window
   cv::medianBlur( inputImage, resultImage, 9 );
 
   // if there is only an input file specified then display the result on screen
