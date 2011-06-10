@@ -5,8 +5,11 @@
 \usepackage{listings}
 \usepackage{url}
 
-\definecolor{listcomment}{rgb}{0.0,0.5,0.0}
-\definecolor{listkeyword}{rgb}{0.0,0.0,0.5}
+\definecolor{listcomment}{rgb}{0.0,0.0,1.0}
+\definecolor{listkeyword}{rgb}{0.5,0.0,0.0}
+\definecolor{listidentifier}{rgb}{0.0,0.3,0.0}
+\definecolor{listdirective}{rgb}{0.5,0.0,1.0}
+\definecolor{liststring}{rgb}{1.0,0.0,1.0}
 \definecolor{listnumbers}{gray}{0.65}
 \definecolor{listlightgray}{gray}{0.955}
 \definecolor{listwhite}{gray}{1.0}
@@ -20,9 +23,10 @@
 \lstset{backgroundcolor=\color{listbackground}}
 \lstset{basicstyle=\tiny}
 \lstset{keywordstyle=\color{listkeyword}\bfseries}
-\lstset{identifierstyle=\color{blue}}
+\lstset{identifierstyle=\color{listidentifier}}
+\lstset{directivestyle=\color{listdirective}}
 \lstset{commentstyle=\color{listcomment}}
-\lstset{stringstyle=\ttfamily\color{red}}
+\lstset{stringstyle=\ttfamily\color{liststring}}
 \lstset{showstringspaces=false}
 
 \newcommand{\lstlistingwithnumber}[3]{
