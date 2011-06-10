@@ -160,12 +160,111 @@ You will typically do:
 
 
 \begin{frame}
-\frametitle{How to Configure and Build}
-\framesubtitle{cmake-gui}
+\frametitle{LUIS TODO}
 \begin{itemize}
 \item Create shortcut to build from nautilus
 \item Shell script that launches gnome-terminal, cd s to binary dir and user can type "make"
 \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{How to Configure and Build}
+\framesubtitle{cmake-gui}
+\begin{itemize}
+\item Create a directory
+\item Configure the code with CMake
+\item Build (compile and link an executable)
+\item Run it in example image
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to Configure and Build}
+\framesubtitle{cmake-gui}
+\begin{itemize}
+\item Create a directory
+\end{itemize}
+\begin{verbatim}
+cd ~/bin
+mkdir itkexercise1
+cd itkexercise1
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to Configure and Build}
+\framesubtitle{cmake-gui}
+\begin{itemize}
+\item Run ``cmake-gui''
+\item Set ``Source Directory'' (where the source code is)
+\item Set ``Binary Directory'' (where to build the executable)
+\item Click on ``Configure''
+\end{itemize}
+\begin{center}
+  \includegraphics[width=0.5\paperwidth]{Screenshot-CMakeGUI-01.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to Configure and Build}
+\framesubtitle{cmake-gui}
+\begin{itemize}
+\item Select to generate ``Unix Makefiles''
+\item Select to ``Use default native compilers''
+\end{itemize}
+\begin{center}
+  \includegraphics[width=0.5\paperwidth]{Screenshot-CMakeGUI-02.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to Configure and Build}
+\framesubtitle{cmake-gui}
+\begin{itemize}
+\item Click on ``Configure''
+\item Set ``ITK\_DIR'' to /home/tutorial/bin/ITKVideo/Release
+\item Click on ``Configure''
+\item Click on ``Generate''
+\end{itemize}
+\begin{center}
+  \includegraphics[width=0.5\paperwidth]{Screenshot-CMakeGUI-03.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to Build}
+\framesubtitle{cmake-gui}
+\begin{itemize}
+\item In the command line do:
+\end{itemize}
+\begin{verbatim}
+cd  /home/tutorial/itkexercise1
+make
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to Run}
+\framesubtitle{cmake-gui}
+\begin{itemize}
+\item In the command line type:
+\end{itemize}
+\begin{verbatim}
+./BasicImageFilteringITK  ~/data/lenna.jpg  lennaMedian.png
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to View the Result}
+\framesubtitle{cmake-gui}
+\begin{itemize}
+\item In the command line type:
+\end{itemize}
+\begin{verbatim}
+eog ~/data/lenna.jpg &
+eog lennaMedian.png &
+\end{verbatim}
 \end{frame}
 
 
@@ -176,3 +275,4 @@ You will typically do:
 \lstinputlisting[linerange={21-23}]{BasicImageFilteringITK.cxx}
 \end{center}
 \end{frame}
+
