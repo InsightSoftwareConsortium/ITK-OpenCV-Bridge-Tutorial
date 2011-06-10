@@ -29,11 +29,13 @@ int main( int argc, char * argv [] )
     return EXIT_FAILURE;
     }
 
-  typedef   unsigned char  InputPixelType;
-  typedef   unsigned char  OutputPixelType;
+  typedef  unsigned char  InputPixelType;
+  typedef  unsigned char  OutputPixelType;
 
-  typedef itk::Image< InputPixelType,  2 >   InputImageType;
-  typedef itk::Image< OutputPixelType, 2 >   OutputImageType;
+  const unsigned int Dimension = 2;
+
+  typedef itk::Image< InputPixelType,  Dimension >   InputImageType;
+  typedef itk::Image< OutputPixelType, Dimension >   OutputImageType;
 
   typedef itk::ImageFileReader< InputImageType  >  ReaderType;
   typedef itk::ImageFileWriter< OutputImageType >  WriterType;
@@ -44,8 +46,7 @@ int main( int argc, char * argv [] )
   reader->SetFileName( argv[1] );
   writer->SetFileName( argv[2] );
 
-  typedef itk::MedianImageFilter<
-    InputImageType, OutputImageType >  FilterType;
+  typedef itk::MedianImageFilter< InputImageType, OutputImageType > FilterType;
 
   FilterType::Pointer filter = FilterType::New();
 
