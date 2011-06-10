@@ -30,10 +30,10 @@ You will typically do:
 {
 \setbeamertemplate{navigation symbols}{}
 \begin{frame}[fragile]
-\frametitle{Basic Filtering}
-\framesubtitle{Median Filter}
+\frametitle{Basic Filtering - Median Filter}
+\framesubtitle{ITKIntroduction/exercise1/BasicImageFilteringITK.cxx}
 \begin{itemize}
-\item Include headers\footnote{Source code in Exercises/ITKIntroduction/exercise1/BasicImageFilteringITK.cxx}
+\item Include headers
 \end{itemize}
 \lstlistingwithnumber{19}{21}{BasicImageFilteringITK.cxx}
 \pause
@@ -48,105 +48,85 @@ You will typically do:
 {
 \setbeamertemplate{navigation symbols}{}
 \begin{frame}[fragile]
-\frametitle{Basic Filtering}
-\framesubtitle{Median Filter}
+\frametitle{Basic Filtering - Median Filter}
+\framesubtitle{ITKIntroduction/exercise1/BasicImageFilteringITK.cxx}
 \begin{itemize}
-\item Declare pixel types and image dimension\footnote{Source code in Exercises/ITKIntroduction/exercise1/BasicImageFilteringITK.cxx}
-\end{itemize}
-\begin{center}
+\item Declare pixel types and image dimension
 \lstlistingwithnumber{32}{35}{BasicImageFilteringITK.cxx}
-\end{center}
+\end{itemize}
 \pause
 \begin{itemize}
 \item Declare input and output image types
-\end{itemize}
-\begin{center}
 \lstlistingwithnumber{37}{38}{BasicImageFilteringITK.cxx}
-\end{center}
+\end{itemize}
 \end{frame}
 }
 
 {
 \setbeamertemplate{navigation symbols}{}
 \begin{frame}[fragile]
-\frametitle{Basic Filtering}
-\framesubtitle{Median Filter}
+\frametitle{Basic Filtering - Median Filter}
+\framesubtitle{ITKIntroduction/exercise1/BasicImageFilteringITK.cxx}
 \begin{itemize}
-\item Declare the types for reader and writer\footnote{Source code in Exercises/ITKIntroduction/exercise1/BasicImageFilteringITK.cxx}
-\end{itemize}
-\begin{center}
+\item Declare the types for reader and writer
 \lstlistingwithnumber{40}{41}{BasicImageFilteringITK.cxx}
-\end{center}
+\end{itemize}
 \pause
 \begin{itemize}
 \item Instantiate the reader and writer objects (source and sink)
-\end{itemize}
-\begin{center}
 \lstlistingwithnumber{43}{44}{BasicImageFilteringITK.cxx}
-\end{center}
+\end{itemize}
 \pause
 \begin{itemize}
 \item Set input and output filenames
-\end{itemize}
-\begin{center}
 \lstlistingwithnumber{46}{47}{BasicImageFilteringITK.cxx}
-\end{center}
+\end{itemize}
 \end{frame}
 }
 
 {
 \setbeamertemplate{navigation symbols}{}
 \begin{frame}[fragile]
-\frametitle{Basic Filtering}
-\framesubtitle{Median Filter}
+\frametitle{Basic Filtering - Median Filter}
+\framesubtitle{ITKIntroduction/exercise1/BasicImageFilteringITK.cxx}
 \begin{itemize}
-\item Declare the Median filter type\footnote{Source code in Exercises/ITKIntroduction/exercise1/BasicImageFilteringITK.cxx}
-\end{itemize}
-\begin{center}
+\item Declare the Median filter type
 \lstlistingwithnumber{49}{50}{BasicImageFilteringITK.cxx}
-\end{center}
+\end{itemize}
 \pause
 \begin{itemize}
 \item Create the filter
-\end{itemize}
-\begin{center}
 \lstlistingwithnumber{51}{51}{BasicImageFilteringITK.cxx}
-\end{center}
+\end{itemize}
 \end{frame}
 }
 
 {
 \setbeamertemplate{navigation symbols}{}
 \begin{frame}[fragile]
-\frametitle{Basic Filtering}
-\framesubtitle{Median Filter}
+\frametitle{Basic Filtering - Median Filter}
+\framesubtitle{ITKIntroduction/exercise1/BasicImageFilteringITK.cxx}
 \begin{itemize}
-\item Define the Median kernel radius (Manhattan Radius)\footnote{Source code in Exercises/ITKIntroduction/exercise1/BasicImageFilteringITK.cxx}
-\end{itemize}
-\begin{center}
+\item Define the Median kernel radius (Manhattan Radius)
 \lstlistingwithnumber{55}{58}{BasicImageFilteringITK.cxx}
-\end{center}
+\end{itemize}
 \pause
 \begin{itemize}
 \item Connect the pipeline
-\end{itemize}
-\begin{center}
 \lstlistingwithnumber{60}{61}{BasicImageFilteringITK.cxx}
-\end{center}
+\end{itemize}
 \end{frame}
 }
 
 {
 \setbeamertemplate{navigation symbols}{}
 \begin{frame}[fragile]
-\frametitle{Basic Filtering}
-\framesubtitle{Median Filter}
+\frametitle{Basic Filtering - Median Filter}
+\framesubtitle{ITKIntroduction/exercise1/BasicImageFilteringITK.cxx}
 \begin{itemize}
 \item Trigger the pipeline execution by calling Update().
-\end{itemize}
-\begin{center}
 \lstlistingwithnumber{63}{71}{BasicImageFilteringITK.cxx}
-\end{center}
+\end{itemize}
 \pause
 \begin{itemize}
 \item ITK uses C++ exceptions for error management
@@ -182,12 +162,12 @@ You will typically do:
 \framesubtitle{cmake-gui}
 \begin{itemize}
 \item Create a directory
-\end{itemize}
 \begin{verbatim}
 cd ~/bin
 mkdir itkexercise1
 cd itkexercise1
 \end{verbatim}
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -195,9 +175,6 @@ cd itkexercise1
 \framesubtitle{cmake-gui}
 \begin{itemize}
 \item Run ``cmake-gui''
-\item Set ``Source Directory'' (where the source code is)
-\item Set ``Binary Directory'' (where to build the executable)
-\item Click on ``Configure''
 \end{itemize}
 \begin{center}
   \includegraphics[width=0.5\paperwidth]{Screenshot-CMakeGUI-01.png}
@@ -208,11 +185,39 @@ cd itkexercise1
 \frametitle{How to Configure and Build}
 \framesubtitle{cmake-gui}
 \begin{itemize}
-\item Select to generate ``Unix Makefiles''
-\item Select to ``Use default native compilers''
+\item Set ``Source Directory'' (where the source code is)
+\item Set ``Binary Directory'' (where to build the executable)
+\item Click on ``Configure''
 \end{itemize}
 \begin{center}
-  \includegraphics[width=0.5\paperwidth]{Screenshot-CMakeGUI-02.png}
+  \includegraphics[width=0.7\paperwidth]{Screenshot-CMakeGUI-02.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to Configure and Build}
+\framesubtitle{cmake-gui}
+\begin{itemize}
+\item You will get an error message
+\end{itemize}
+\begin{center}
+  \includegraphics[width=0.3\paperwidth]{Screenshot-CMakeGUI-03.png}
+\end{center}
+\begin{itemize}
+\item Because the project needs ITK and we have not provided it yet
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{How to Configure and Build}
+\framesubtitle{cmake-gui}
+\begin{itemize}
+\item Provide the path to ITK in the ITK\_DIR variable
+\item /home/tutorial/bin/ITKVideo/Release
+\end{itemize}
+\begin{center}
+  \includegraphics[width=0.7\paperwidth]{Screenshot-CMakeGUI-04.png}
 \end{center}
 \end{frame}
 
@@ -221,12 +226,10 @@ cd itkexercise1
 \framesubtitle{cmake-gui}
 \begin{itemize}
 \item Click on ``Configure''
-\item Set ``ITK\_DIR'' to /home/tutorial/bin/ITKVideo/Release
-\item Click on ``Configure''
 \item Click on ``Generate''
 \end{itemize}
 \begin{center}
-  \includegraphics[width=0.5\paperwidth]{Screenshot-CMakeGUI-03.png}
+  \includegraphics[width=0.7\paperwidth]{Screenshot-CMakeGUI-05.png}
 \end{center}
 \end{frame}
 
@@ -267,10 +270,8 @@ eog lennaMedian.png &
 
 
 \begin{frame}
-\frametitle{Basic Filtering}
-\framesubtitle{Replace with Canny Filter}
-\begin{center}
-\lstlistingwithnumber{21}{23}{BasicImageFilteringITK.cxx}
-\end{center}
+\frametitle{Basic Filtering - Canny Filter}
+\framesubtitle{ITKIntroduction/exercise1/BasicImageFilteringITKAnswer.cxx}
+\lstlistingwithnumber{21}{23}{BasicImageFilteringITKAnswer.cxx}
 \end{frame}
 
