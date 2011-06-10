@@ -235,37 +235,43 @@ cd itkexercise1
 
 \begin{frame}[fragile]
 \frametitle{How to Build}
-\framesubtitle{cmake-gui}
+\framesubtitle{make}
 \begin{itemize}
 \item In the command line do:
-\end{itemize}
 \begin{verbatim}
-cd  /home/tutorial/itkexercise1
+cd  /home/tutorial/bin/itkexercise1
 make
 \end{verbatim}
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{How to Run}
-\framesubtitle{cmake-gui}
+\framesubtitle{/home/tutorial/bin/itkexercise1}
 \begin{itemize}
-\item In the command line type:
-\end{itemize}
+\item While in the directory:
 \begin{verbatim}
-./BasicImageFilteringITK  ~/data/lenna.jpg  lennaMedian.png
+/home/tutorial/bin/itkexercise1
 \end{verbatim}
+\item In the command line type:
+\begin{verbatim}
+./BasicImageFilteringITK      \
+      ~/data/baboongray.png   \
+      ./baboongrayMedian.png
+\end{verbatim}
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{How to View the Result}
-\framesubtitle{cmake-gui}
+\framesubtitle{Image viewing application ``eye of gnome'': eog}
 \begin{itemize}
 \item In the command line type:
-\end{itemize}
 \begin{verbatim}
-eog ~/data/lenna.jpg &
-eog lennaMedian.png &
+eog ~/data/baboongray.jpg &
+eog ./baboongrayMedian.png &
 \end{verbatim}
+\end{itemize}
 \end{frame}
 
 
