@@ -6,12 +6,46 @@ ITK Introduction
 }
 
 \begin{frame}
+\frametitle{ITK is a Templated Library}
+You will typically do:
+\begin{itemize}
+\item Include headers
+\pause
+\item Pick pixel type
+\pause
+\item Pick image dimension
+\pause
+\item Instantiate image type
+\pause
+\item Instantiate filter type
+\pause
+\item Create filters
+\pause
+\item Connect pipeline
+\pause
+\item Run pipeline
+\end{itemize}
+\end{frame}
+
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[fragile]
 \frametitle{Basic Filtering}
 \framesubtitle{Median Filter}
+\begin{itemize}
+\item Include header\footnote{Source code in Exercises/ITKIntroduction/exercise1/BasicImageFilteringITK.cxx}
+\end{itemize}
 \begin{center}
-\lstinputlisting[linerange={21-23}]{BasicImageFilteringITK.cxx}
+\lstinputlisting[linerange={19-21}]{BasicImageFilteringITK.cxx}
 \end{center}
+\pause
+\begin{itemize}
+\item Read images from files
+\item Write images from files
+\item Apply a median filter in an image
+\end{itemize}
 \end{frame}
+}
 
 \begin{frame}
 \frametitle{How to Configure and Build}
