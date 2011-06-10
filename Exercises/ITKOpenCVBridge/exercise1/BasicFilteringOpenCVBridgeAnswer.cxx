@@ -23,49 +23,49 @@
 #include <itkCurvatureFlowImageFilter.h>
 #include <itkOpenCVImageBridge.h>
 
-/**
- * Use OpenCV and ITK to apply a Curvature Flow filter to an image. Set the
- * TimeStep of the filter to 0.5 and the NumberOfIterations to 20.
- */
 int main ( int argc, char **argv )
 {
-
-  // Check arguments
-  if( argc < 3 )
-    {
-    std::cout << "Usage: " << argv[0] << " <input> <output>" << std::endl;
+  if( argc < 2 )
+  {
+    std::cout << "Usage: "<< argv[0] <<" input_image output_image"<<std::endl;
     return -1;
-    }
+  }
 
-  // Set up typedefs for ITK
-  typedef unsigned char                                                    InputPixelType;
-  typedef float                                                            OutputPixelType;
-  const unsigned int Dimension =                                           2;
-  typedef itk::Image< InputPixelType, Dimension >                          InputImageType;
-  typedef itk::Image< OutputPixelType, Dimension >                         OutputImageType;
-  typedef itk::CurvatureFlowImageFilter< InputImageType, OutputImageType > FilterType;
+  cv::Mat inputImage = cv::imread( argv[1] );
 
-  // Open thge file with OpenCV
-  cv::Mat openCVImage = cv::imread( argv[1] );
+  typedef unsigned char                            InputPixelType;
+  typedef float                                    OutputPixelType;
+  const unsigned int Dimension =                   2;
+  typedef itk::Image< InputPixelType, Dimension >  InputImageType;
+  typedef itk::Image< OutputPixelType, Dimension > OutputImageType;
+  typedef itk::OpenCVImageBridge                   BridgeType;
+  typedef itk::CurvatureFlowImageFilter< InputImageType, OutputImageType > 
+                                                   FilterType;
 
-  // Convert the image to ITK
   InputImageType::Pointer itkImage =
-    itk::OpenCVImageBridge::CVMatToITKImage< InputImageType >( openCVImage );
+    BridgeType::CVMatToITKImage< InputImageType >( inputImage );
 
-  // Set up the ITK filter
   FilterType::Pointer filter = FilterType::New();
   filter->SetTimeStep( 0.5 );
   filter->SetNumberOfIterations( 20 );
 
-  // Set the converted image as input and run the filter
   filter->SetInput( itkImage );
   filter->Update();
 
-  // Convert back to OpenCV and write the image out
-  cv::imwrite( argv[2],
-    itk::OpenCVImageBridge::ITKImageToCVMat< OutputImageType >( filter->GetOutput() ) );
+  cv::Mat resultImage =
+    BridgeType::ITKImageToCVMat< OutputImageType >( filter->GetOutput() );
 
+  if(argc < 3)
+  {
+    std::string windowName = "Exercise 1: Basic Filtering in OpenCV & ITK";
+    cv::namedWindow( windowName, CV_WINDOW_FREERATIO);
+    cv::imshow( windowName, resultImage );
+    cv::waitKey();
+  }
+  else
+  {
+    cv::imwrite( argv[2], resultImage );
+  }
 
   return 0;
 }
-
