@@ -16,11 +16,11 @@ A Basic Image Filtering Example
 \framesubtitle{OpenCVIntroduction/exercise1/BasicFilteringOpenCV.cxx}
 \begin{center}
 We need to include the OpenCV headers
-\lstinputlisting[linerange={19-20}]{BasicFilteringOpenCV.cxx}
+\lstlistingwithnumber{19}{20}{BasicFilteringOpenCV.cxx}
 \pause
 \vspace{1 em}
 and standard library headers for {\tt cout} and {\tt string}
-\lstinputlisting[linerange={22-23}]{BasicFilteringOpenCV.cxx}
+\lstlistingwithnumber{22}{23}{BasicFilteringOpenCV.cxx}
 \end{center}
 \end{frame}
 
@@ -31,7 +31,7 @@ and standard library headers for {\tt cout} and {\tt string}
 \begin{center}
 %\lstinputlisting[linerange={26-34,42-45,54-57,60-63}]{BasicFilteringOpenCV.cxx}
 \begin{itemize}
-\lstinputlisting[linerange={26-51},firstnumber=26,numbers=left]{BasicFilteringOpenCV.cxx}
+\lstlistingwithnumber{26}{51}{BasicFilteringOpenCV.cxx}
 \end{itemize}
 \end{center}
 \end{frame}
@@ -44,13 +44,13 @@ and standard library headers for {\tt cout} and {\tt string}
 \begin{itemize}
 \item If no arguments, print usage and exit \\
 Note: {\tt argv[0]} contains the executable name
-\lstinputlisting[linerange={28-32},firstnumber=28,numbers=left]{BasicFilteringOpenCV.cxx}
+\lstlistingwithnumber{28}{32}{BasicFilteringOpenCV.cxx}
 \pause
 \item Load an image from the specified file into a matrix object
-\lstinputlisting[linerange={34-34},firstnumber=34,numbers=left]{BasicFilteringOpenCV.cxx}
+\lstlistingwithnumber{34}{34}{BasicFilteringOpenCV.cxx}
 \pause
 \item Create a matrix for the output and apply a median filter
-\lstinputlisting[linerange={35-36},firstnumber=35,numbers=left]{BasicFilteringOpenCV.cxx}
+\lstlistingwithnumber{35}{36}{BasicFilteringOpenCV.cxx}
 \item The last argument represent the size of the filter, $9\times9$ in this case
 \end{itemize}
 \end{center}
@@ -63,7 +63,7 @@ Note: {\tt argv[0]} contains the executable name
 \begin{center}
 \begin{itemize}
 \item If no output file is specified, use HighGUI to display the resulting image.
-\lstinputlisting[linerange={38-44},firstnumber=38,numbers=left]{BasicFilteringOpenCV.cxx}
+\lstlistingwithnumber{38}{44}{BasicFilteringOpenCV.cxx}
 \pause
 \item A title string is used to identify the GUI window.
 \item Create a named window, CV\_WINDOW\_FREERATIO is needed for display with OpenGL.
@@ -80,7 +80,7 @@ Note: {\tt argv[0]} contains the executable name
 \begin{center}
 \begin{itemize}
 \item If an output file is specified, write the image to the specified file
-\lstinputlisting[linerange={45-48},firstnumber=45,numbers=left]{BasicFilteringOpenCV.cxx}
+\lstlistingwithnumber{45}{48}{BasicFilteringOpenCV.cxx}
 \end{itemize}
 \end{center}
 \end{frame}
@@ -92,16 +92,16 @@ Note: {\tt argv[0]} contains the executable name
 \begin{center}
 \begin{itemize}
 \item Replace the median filter with a Canny edge detector
-\lstinputlisting[linerange={35-36},firstnumber=35,numbers=left]{BasicFilteringOpenCV.cxx}
+\lstlistingwithnumber{35}{36}{BasicFilteringOpenCV.cxx}
 \pause
 \item Hint: The OpenCV Canny function has this signature
-\begin{lstlisting}
+\begin{lstlisting}[numbers=none,xleftmargin=0pt]
 void Canny(const Mat& image, Mat& edges, double threshold1, double threshold2);
 \end{lstlisting}
 \pause
 \item Canny requires grayscale image input, but our images are color
 \item Hint: Use this function to convert a color space
-\begin{lstlisting}
+\begin{lstlisting}[numbers=none,xleftmargin=0pt]
 void cvtColor(const Mat& src, Mat& dst, int code);
 \end{lstlisting}
 \item Use {\tt CV\_BGR2GRAY} for {\tt code} to convert BGR color to gray.
@@ -114,7 +114,7 @@ void cvtColor(const Mat& src, Mat& dst, int code);
 \framesubtitle{OpenCVIntroduction/exercise1/BasicFilteringOpenCVAnswer.cxx}
 \begin{center}
 \begin{itemize}
-\lstinputlisting[linerange={34-38},firstnumber=34,numbers=left]{BasicFilteringOpenCVAnswer.cxx}
+\lstlistingwithnumber{34}{38}{BasicFilteringOpenCVAnswer.cxx}
 \end{itemize}
 \end{center}
 \end{frame}
