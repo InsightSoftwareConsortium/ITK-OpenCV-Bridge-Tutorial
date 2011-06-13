@@ -276,6 +276,14 @@ eog ./baboongrayMedian.png &
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{Result of Median Filter}
+\begin{center}
+  \includegraphics[width=0.45\paperwidth]{Screenshot-baboongray-01.png}
+  \includegraphics[width=0.45\paperwidth]{Screenshot-baboongrayMedian-01.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
 \frametitle{Excercise 1}
 \framesubtitle{Replace the filter with another one}
 \begin{itemize}
@@ -322,9 +330,10 @@ make
 \end{verbatim}
 \item In the command line type:
 \begin{verbatim}
-./BasicImageFilteringITK      \
-      ~/data/baboongray.png   \
-      ./baboongrayMean.png
+./BasicImageFilteringITK        \
+      ~/data/baboongray.png     \
+      ./baboongrayMean.png      \
+      3  3
 \end{verbatim}
 \end{itemize}
 \end{frame}
@@ -341,29 +350,23 @@ eog ./baboongrayMean.png &
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{How to Configure and Build ALL}
-\framesubtitle{cmake-gui}
-\begin{itemize}
-\item Create a binary directory
-\item Configure the code with CMake
-\item Build (compile and link all executables)
-\end{itemize}
+\begin{frame}[fragile]
+\frametitle{Result of Mean Filter}
+\begin{center}
+  \includegraphics[width=0.45\paperwidth]{Screenshot-baboongray-01.png}
+  \includegraphics[width=0.45\paperwidth]{Screenshot-baboongrayMean-01.png}
+\end{center}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{How to Configure and Build ALL}
-\framesubtitle{cmake-gui}
+\frametitle{Find All Other Exercises}
 \begin{itemize}
-\item Create a binary directory
+\item Go to the binary directory
 \begin{verbatim}
-cd ~/bin
-mkdir ITK-OpenCV-Bridge-Tutorial
-cd    ITK-OpenCV-Bridge-Tutorial
+cd ~/bin/ITK-OpenCV-Bridge-Tutorial/Exercises
 \end{verbatim}
 \end{itemize}
 \end{frame}
-
 
 \begin{frame}
 \frametitle{Basic Filtering - Canny Filter}
