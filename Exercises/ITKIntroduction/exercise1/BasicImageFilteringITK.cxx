@@ -16,9 +16,9 @@
  *
  *=========================================================================*/
 
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
-#include "itkMedianImageFilter.h"
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
+#include <itkMedianImageFilter.h>
 
 int main( int argc, char * argv [] )
 {
