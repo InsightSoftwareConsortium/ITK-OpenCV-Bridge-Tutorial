@@ -4,12 +4,12 @@
 
 # BasicFilteringOpenCVBridge
 add_executable(Ex2_BasicFilteringOpenCVBridge 
-  BasicFilteringOpenCVBridge.cxx )
+  Ex2_BasicFilteringOpenCVBridge.cxx )
 target_link_libraries(Ex2_BasicFilteringOpenCVBridge
   ${ITK_LIBRARIES} ${OpenCV_LIBS})
 
 # BasicFilteringOpenCVBridgeAnswer
 add_executable(Ex2_BasicFilteringOpenCVBridgeAnswer 
-  BasicFilteringOpenCVBridgeAnswer.cxx )
+  Ex2_BasicFilteringOpenCVBridgeAnswer.cxx )
 target_link_libraries(Ex2_BasicFilteringOpenCVBridgeAnswer
   ${ITK_LIBRARIES} ${OpenCV_LIBS})

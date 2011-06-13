@@ -6,7 +6,14 @@ endif(COMMAND CMAKE_POLICY)
 project(ITKBasicImageFiltering)
 
 find_package(ITK REQUIRED)
-include(${ITK_USE_FILE})
+if(ITK_FOUND)
+  include(${USE_ITK_FILE})
+endif()
+
+find_package(OpenCV REQUIRED)
+if(OpenCV_FOUND)
+  include_directories(${OpenCV_INCLUDE_DIRS})
+endif()
 
 add_executable(BasicImageFilteringITK BasicImageFilteringITK.cxx )
 target_link_libraries(BasicImageFilteringITK ${ITK_LIBRARIES})
