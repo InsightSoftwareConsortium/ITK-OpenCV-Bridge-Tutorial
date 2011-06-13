@@ -41,7 +41,7 @@ void processAndDisplayVideo(cv::VideoCapture& vidCap)
   int height = vidCap.get( CV_CAP_PROP_FRAME_HEIGHT );
 
   // The title string for the GUI window
-  std::string windowName = "Exercise 1: Basic Filtering in OpenCV";
+  std::string windowName = "Exercise 2: Basic Video Filtering in OpenCV";
   // create a window, CV_WINDOW_FREERATIO is needed for display with OpenGL
   cv::namedWindow( windowName, CV_WINDOW_FREERATIO);
   // resize the window to match the size of the video
