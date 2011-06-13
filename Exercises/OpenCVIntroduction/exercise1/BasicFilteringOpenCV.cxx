@@ -39,6 +39,7 @@ int main ( int argc, char **argv )
   {
     std::string windowName = "Exercise 1: Basic Filtering in OpenCV";
     cv::namedWindow( windowName, CV_WINDOW_FREERATIO);
+    cvResizeWindow( windowName.c_str(), resultImage.cols, resultImage.rows+50 );
     cv::imshow( windowName, resultImage );
     cv::waitKey();
   }
