@@ -39,7 +39,7 @@ and standard library headers for {\tt cout} and {\tt string}
 \begin{center}
 %\lstinputlisting[linerange={26-34,42-45,54-57,60-63}]{BasicFilteringOpenCV.cxx}
 \begin{itemize}
-\lstlistingwithnumber{26}{51}{BasicFilteringOpenCV.cxx}
+\lstlistingwithnumber{26}{52}{BasicFilteringOpenCV.cxx}
 \end{itemize}
 \end{center}
 \end{frame}
@@ -71,12 +71,46 @@ Note: {\tt argv[0]} contains the executable name
 \begin{center}
 \begin{itemize}
 \item If no output file is specified, use HighGUI to display the resulting image.
-\lstlistingwithnumber{38}{44}{BasicFilteringOpenCV.cxx}
-\pause
+\lstlistingwithnumber{38}{45}{BasicFilteringOpenCV.cxx}
+\end{itemize}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Create the Display Window}
+\framesubtitle{OpenCVIntroduction/exercise1/BasicFilteringOpenCV.cxx}
+\begin{center}
+\begin{itemize}
 \item A title string is used to identify the GUI window.
-\item Create a named window, CV\_WINDOW\_FREERATIO is needed for display with OpenGL.
+\lstlistingwithnumber{40}{40}{BasicFilteringOpenCV.cxx}
+\item Create a named window.
+  \begin{itemize}
+  \item {\tt\small CV\_WINDOW\_FREERATIO} is needed for display using OpenGL.
+  \end{itemize}
+\lstlistingwithnumber{41}{41}{BasicFilteringOpenCV.cxx}
+\item Resize the window to match the image size.
+  \begin{itemize}
+  \item {\tt\small cvResizeWindow()} is a C function with no C++ API equivalent.
+  \item It is not in the {\tt\small cv} namespace.
+  \item It requires a {\tt\small const char*} name, provided by {\tt\small std::string::c\_str()}.
+  \item The +50 in height to account for the height of tool/status bars.
+  \end{itemize}
+\lstlistingwithnumber{42}{42}{BasicFilteringOpenCV.cxx}
+\end{itemize}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Display and Wait}
+\framesubtitle{OpenCVIntroduction/exercise1/BasicFilteringOpenCV.cxx}
+\begin{center}
+\begin{itemize}
 \item Show the image in the previously created window.
+\lstlistingwithnumber{43}{43}{BasicFilteringOpenCV.cxx}
 \item Wait for the user to press a key, then continue.
+\lstlistingwithnumber{44}{44}{BasicFilteringOpenCV.cxx}
 \end{itemize}
 \end{center}
 \end{frame}
@@ -88,7 +122,7 @@ Note: {\tt argv[0]} contains the executable name
 \begin{center}
 \begin{itemize}
 \item If an output file is specified, write the image to the specified file
-\lstlistingwithnumber{45}{48}{BasicFilteringOpenCV.cxx}
+\lstlistingwithnumber{46}{49}{BasicFilteringOpenCV.cxx}
 \end{itemize}
 \end{center}
 \end{frame}
