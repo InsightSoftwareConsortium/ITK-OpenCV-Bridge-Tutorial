@@ -18,5 +18,8 @@ endif()
 add_executable(BasicImageFilteringITK BasicImageFilteringITK.cxx )
 target_link_libraries(BasicImageFilteringITK ${ITK_LIBRARIES})
 
-add_executable(BasicImageFilteringITKAnswer BasicImageFilteringITKAnswer.cxx )
-target_link_libraries(BasicImageFilteringITKAnswer ${ITK_LIBRARIES})
+add_executable(BasicImageFilteringITKAnswer1 BasicImageFilteringITKAnswer1.cxx )
+target_link_libraries(BasicImageFilteringITKAnswer1 ${ITK_LIBRARIES})
+
+add_executable(BasicImageFilteringITKAnswer2 BasicImageFilteringITKAnswer2.cxx )
+target_link_libraries(BasicImageFilteringITKAnswer2 ${ITK_LIBRARIES})

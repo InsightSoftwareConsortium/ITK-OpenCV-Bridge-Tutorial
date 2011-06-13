@@ -150,7 +150,7 @@ You will typically do:
 \frametitle{How to Configure and Build}
 \framesubtitle{cmake-gui}
 \begin{itemize}
-\item Create a directory
+\item Create a binary directory
 \item Configure the code with CMake
 \item Build (compile and link an executable)
 \item Run it in example image
@@ -161,7 +161,7 @@ You will typically do:
 \frametitle{How to Configure and Build}
 \framesubtitle{cmake-gui}
 \begin{itemize}
-\item Create a directory
+\item Create a binary directory
 \begin{verbatim}
 cd ~/bin
 mkdir itkexercise1
@@ -249,7 +249,7 @@ make
 \frametitle{How to Run}
 \framesubtitle{/home/tutorial/bin/itkexercise1}
 \begin{itemize}
-\item While in the directory:
+\item While in the binary directory:
 \begin{verbatim}
 /home/tutorial/bin/itkexercise1
 \end{verbatim}
@@ -274,10 +274,99 @@ eog ./baboongrayMedian.png &
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Excercise 1}
+\framesubtitle{Replace the filter with another one}
+\begin{itemize}
+\item Select a Filter from the Doxygen documentation\\
+(e.g. MeanImageFilter)
+\item Replace the MedianImageFilter with the selected filter
+\item Recompile
+\item Rerun
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Excercise 1}
+\framesubtitle{ITKIntroduction/exercise1/BasicImageFilteringITKAnswer1.cxx}
+\begin{itemize}
+\item First we replace the Header file:
+\lstlistingwithnumber{21}{21}{BasicImageFilteringITKAnswer1.cxx}
+\end{itemize}
+\begin{itemize}
+\item Then we replace the Filter instantiation:
+\lstlistingwithnumber{49}{49}{BasicImageFilteringITKAnswer1.cxx}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to Build}
+\framesubtitle{make}
+\begin{itemize}
+\item In the command line do:
+\begin{verbatim}
+cd  /home/tutorial/bin/itkexercise1
+make
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to Run}
+\framesubtitle{/home/tutorial/bin/itkexercise1}
+\begin{itemize}
+\item While in the binary directory:
+\begin{verbatim}
+/home/tutorial/bin/itkexercise1
+\end{verbatim}
+\item In the command line type:
+\begin{verbatim}
+./BasicImageFilteringITK      \
+      ~/data/baboongray.png   \
+      ./baboongrayMean.png
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to View the Result}
+\framesubtitle{Image viewing application ``eye of gnome'': eog}
+\begin{itemize}
+\item In the command line type:
+\begin{verbatim}
+eog ~/data/baboongray.jpg &
+eog ./baboongrayMean.png &
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{How to Configure and Build ALL}
+\framesubtitle{cmake-gui}
+\begin{itemize}
+\item Create a binary directory
+\item Configure the code with CMake
+\item Build (compile and link all executables)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to Configure and Build ALL}
+\framesubtitle{cmake-gui}
+\begin{itemize}
+\item Create a binary directory
+\begin{verbatim}
+cd ~/bin
+mkdir ITK-OpenCV-Bridge-Tutorial
+cd    ITK-OpenCV-Bridge-Tutorial
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
 
 \begin{frame}
 \frametitle{Basic Filtering - Canny Filter}
-\framesubtitle{ITKIntroduction/exercise1/BasicImageFilteringITKAnswer.cxx}
-\lstlistingwithnumber{21}{23}{BasicImageFilteringITKAnswer.cxx}
+\framesubtitle{ITKIntroduction/exercise1/BasicImageFilteringITKAnswer2.cxx}
+\lstlistingwithnumber{21}{23}{BasicImageFilteringITKAnswer2.cxx}
 \end{frame}
 
