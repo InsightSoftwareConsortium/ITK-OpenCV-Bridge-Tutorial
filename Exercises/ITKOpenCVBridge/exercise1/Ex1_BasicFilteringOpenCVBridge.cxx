@@ -18,8 +18,8 @@
 
 #include <iostream>
 
-#include <cv.h>
-#include <highgui.h>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
 #include <itkImage.h>
 #include <itkMedianImageFilter.h>
@@ -63,6 +63,7 @@ int main ( int argc, char **argv )
   {
     std::string windowName = "Exercise 1: Basic Filtering in OpenCV & ITK";
     cv::namedWindow( windowName, CV_WINDOW_FREERATIO);
+    cvResizeWindow( windowName.c_str(), resultImage.cols, resultImage.rows+50 );
     cv::imshow( windowName, resultImage );
     cv::waitKey();
   }
