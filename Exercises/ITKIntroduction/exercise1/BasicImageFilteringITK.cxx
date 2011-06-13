@@ -22,10 +22,10 @@
 
 int main( int argc, char * argv [] )
 {
-  if( argc < 3 )
+  if( argc < 5 )
     {
     std::cerr << "Usage: " << std::endl;
-    std::cerr << argv[0] << "  inputImageFile   outputImageFile" << std::endl;
+    std::cerr << argv[0] << "  inputImageFile   outputImageFile  radiusX  radiusY" << std::endl;
     return EXIT_FAILURE;
     }
 
@@ -52,8 +52,8 @@ int main( int argc, char * argv [] )
 
   InputImageType::SizeType indexRadius;
 
-  indexRadius[0] = 1; // radius along x
-  indexRadius[1] = 1; // radius along y
+  indexRadius[0] = atoi( argv[3] ); // radius along x
+  indexRadius[1] = atoi( argv[4] ); // radius along y
 
   filter->SetRadius( indexRadius );
 
