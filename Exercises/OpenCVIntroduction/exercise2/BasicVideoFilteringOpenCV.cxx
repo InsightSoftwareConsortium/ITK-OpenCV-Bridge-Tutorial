@@ -45,7 +45,7 @@ void processAndDisplayVideo(cv::VideoCapture& vidCap)
   // create a window, CV_WINDOW_FREERATIO is needed for display with OpenGL
   cv::namedWindow( windowName, CV_WINDOW_FREERATIO);
   // resize the window to match the size of the video
-  cvResizeWindow( windowName.c_str(), width, height );
+  cvResizeWindow( windowName.c_str(), width, height+50 );
 
   // compute the number of millisecond to delay between drawing frames
   unsigned delay = 1000 / frameRate;
