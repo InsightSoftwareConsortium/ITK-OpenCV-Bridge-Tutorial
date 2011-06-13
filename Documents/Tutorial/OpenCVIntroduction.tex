@@ -275,3 +275,19 @@ void cvtColor(const Mat& src, Mat& dst, int code);
 \end{itemize}
 \end{center}
 \end{frame}
+
+
+\begin{frame}
+\frametitle{Exercise 2}
+\framesubtitle{OpenCVIntroduction/exercise2/BasicVideoFilteringOpenCV.cxx}
+\begin{center}
+\begin{itemize}
+\item Implement {\tt\small processFrame()} by adding the Canny edge detector.
+\lstlistingwithnumber{27}{31}{BasicVideoFilteringOpenCV.cxx}
+\pause
+\item Saving to a video requires color images, but Canny produces grayscale images.
+\item Hint: Use {\tt\small cvtColor()} again to convert back to color.
+\item Use code {\tt\small CV\_GRAY2BGR} for {\tt\small code} to convert gray to BGR.
+\end{itemize}
+\end{center}
+\end{frame}
