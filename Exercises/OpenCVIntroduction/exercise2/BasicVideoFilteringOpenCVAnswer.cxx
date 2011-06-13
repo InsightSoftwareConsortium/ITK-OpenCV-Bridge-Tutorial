@@ -44,8 +44,8 @@ void processAndDisplayVideo(cv::VideoCapture& vidCap)
 {
   // get the video frame rate, width, and height
   double frameRate = vidCap.get( CV_CAP_PROP_FPS );
-  int width = vidCap.get(CV_CAP_PROP_FRAME_WIDTH );
-  int height = vidCap.get(CV_CAP_PROP_FRAME_HEIGHT );
+  int width = vidCap.get( CV_CAP_PROP_FRAME_WIDTH );
+  int height = vidCap.get( CV_CAP_PROP_FRAME_HEIGHT );
 
   // The title string for the GUI window
   std::string windowName = "Exercise 1: Basic Filtering in OpenCV";
@@ -81,8 +81,8 @@ void processAndSaveVideo(cv::VideoCapture& vidCap, const std::string& filename)
 {
   // get the video frame rate, width, and height
   double frameRate = vidCap.get( CV_CAP_PROP_FPS );
-  int width = vidCap.get(CV_CAP_PROP_FRAME_WIDTH );
-  int height = vidCap.get(CV_CAP_PROP_FRAME_HEIGHT );
+  int width = vidCap.get( CV_CAP_PROP_FRAME_WIDTH );
+  int height = vidCap.get( CV_CAP_PROP_FRAME_HEIGHT );
 
   // Specify that the output video will be encoded in DIVX format
   int fourcc = CV_FOURCC('D','I','V','X');
