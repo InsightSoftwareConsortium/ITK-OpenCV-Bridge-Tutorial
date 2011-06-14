@@ -38,7 +38,6 @@ ITK OpenCV Bridge
 Basic Image Filtering (Revisited)
 }
 
-
 \begin{frame}
 \frametitle{Include Header Files}
 \framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridge.cxx}
@@ -58,7 +57,7 @@ Basic Image Filtering (Revisited)
 \item The basic layout of this file is the same as the OpenCV
   Examples:
 \lstlistingwithnumber{27}{35}{Ex1_BasicFilteringOpenCVBridge.cxx}
-\lstlistingwithnumber{62}{75}{Ex1_BasicFilteringOpenCVBridge.cxx}
+\lstlistingwithnumber{69}{84}{Ex1_BasicFilteringOpenCVBridge.cxx}
 \end{itemize}
 \end{frame}
 
@@ -66,8 +65,9 @@ Basic Image Filtering (Revisited)
 \frametitle{Adding ITK}
 \framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridge.cxx}
 \begin{itemize}
-\item The type definitions should also be familiar from the ITK Material:
-\lstinputlisting[linerange={38-45}]{Ex1_BasicFilteringOpenCVBridge.cxx}
+\item The type definitions should also be familiar from the ITK
+  Material:
+\lstlistingwithnumber{38}{45}{Ex1_BasicFilteringOpenCVBridge.cxx}
 \item However, notice the bridge class. It contains the conversion function
 between OpenCV and ITK.
 \lstlistingwithnumber{43}{43}{Ex1_BasicFilteringOpenCVBridge.cxx}
@@ -90,10 +90,10 @@ between OpenCV and ITK.
 \begin{itemize}
 \item The median filtering is normal ITK code, but we do not connect our
 output to a writer
-\lstlistingwithnumber{50}{57}{Ex1_BasicFilteringOpenCVBridge.cxx}
+\lstlistingwithnumber{49}{64}{Ex1_BasicFilteringOpenCVBridge.cxx}
 \pause
 \item Instead, we set it to our conversion function
-\lstlistingwithnumber{59}{60}{Ex1_BasicFilteringOpenCVBridge.cxx}
+\lstlistingwithnumber{66}{67}{Ex1_BasicFilteringOpenCVBridge.cxx}
 \end{itemize}
 \end{frame}
 
@@ -151,10 +151,12 @@ anisotropic diffusion filter built into ITK.
 \frametitle{Exercise 1 (Answer)}
 \framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridgeAnswer.cxx}
 \item The final pipeline should look like this:
-\lstlistingwithnumber{35}{57}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
+\lstlistingwithnumber{35}{35}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
+\lstlistingwithnumber{46}{62}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
 \end{itemize}
 \end{frame}
 
 \centeredlargetext{white}{black}{
 Basic Video Filtering (Revisited)
 }
+
