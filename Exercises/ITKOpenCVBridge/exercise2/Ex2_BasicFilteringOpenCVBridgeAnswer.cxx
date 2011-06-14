@@ -18,80 +18,119 @@
 
 #include <iostream>
 
-#include <highgui.h>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
 #include <itkImage.h>
 #include <itkRGBPixel.h>
 #include <itkCurvatureFlowImageFilter.h>
 #include <itkOpenCVImageBridge.h>
 
-/**
- * Using OpenCV and ITK, open a video (cv), apply a Curvature Flow filter to
- * each frame (itk) and write it back out (cv).
- */
-int main ( int argc, char **argv )
+// Process a single frame of video and return the resulting frame
+cv::Mat processFrame( const cv::Mat& inputImage )
 {
-  // Check arguments
-  if( argc < 3 )
-    {
-    std::cout << "Usage: " << argv[0] << " <input> <output>" << std::endl;
-    return -1;
-    }
+  const unsigned int Dimension =                   2;
+  typedef unsigned char                            InputPixelType;
+  typedef unsigned char                            OutputPixelType;
+  typedef itk::Image< InputPixelType, Dimension >  InputImageType;
+  typedef itk::Image< OutputPixelType, Dimension > OutputImageType;
+  typedef itk::OpenCVImageBridge                   BridgeType;
+  typedef itk::CurvatureFlowImageFilter< InputImageType, OutputImageType > 
+                                                   FilterType;
 
-  // Open thge file with OpenCV
-  cv::VideoCapture cap( argv[1] );
-  if (!cap.isOpened())
-    {
-    std::cout << "Failed to open video from " << argv[1] << std::endl;
-    return -1;
-    }
-
-  // Set up parameters for writer
-  int fourcc = CV_FOURCC( 'M','P','4','2' );
-  double fps = cap.get( CV_CAP_PROP_FPS );
-  int width = static_cast<int>( cap.get( CV_CAP_PROP_FRAME_WIDTH ) );
-  int height = static_cast<int>( cap.get( CV_CAP_PROP_FRAME_HEIGHT ) );
-
-  // Set up writer
-  cv::VideoWriter writer( std::string(argv[2]), fourcc, fps, cv::Size(width, height));
-
-
-  // Set up typedefs for ITK
-  const unsigned int Dimension =                                           2;
-  typedef unsigned char                                                    InputPixelType;
-  typedef float                                                            OutputPixelType;
-  typedef itk::Image< InputPixelType, Dimension >                          InputImageType;
-  typedef itk::Image< OutputPixelType, Dimension >                         OutputImageType;
-  typedef itk::CurvatureFlowImageFilter< InputImageType, OutputImageType > FilterType;
-
-  // Set up ITK filters
   FilterType::Pointer filter = FilterType::New();
   filter->SetTimeStep( 0.5 );
   filter->SetNumberOfIterations( 20 );
 
-  // Loop through the frames of the video and apply the filter using ITK
-  cv::Mat frameIn;
-  cv::Mat frameOut;
-  while( cap.grab() && cap.retrieve(frameIn) )
+  InputImageType::Pointer itkFrame =
+    itk::OpenCVImageBridge::CVMatToITKImage< InputImageType >( inputImage );
+
+  filter->SetInput(itkFrame);
+  filter->Update();
+
+  cv::Mat frameOut = 
+    BridgeType::ITKImageToCVMat< OutputImageType >(filter->GetOutput(),true);
+
+  frameOut.convertTo( frameOut, CV_8U );
+
+  return frameOut;
+}
+
+
+// Iterate through a video, process each frame, and display the result in a GUI.
+void processAndDisplayVideo(cv::VideoCapture& vidCap)
+{
+  double frameRate = vidCap.get( CV_CAP_PROP_FPS );
+  int width = vidCap.get( CV_CAP_PROP_FRAME_WIDTH );
+  int height = vidCap.get( CV_CAP_PROP_FRAME_HEIGHT );
+
+  std::string windowName = "Exercise 2: Basic Video Filtering in OpenCV";
+  cv::namedWindow( windowName, CV_WINDOW_FREERATIO);
+  cvResizeWindow( windowName.c_str(), width, height+50 );
+
+  unsigned delay = 1000 / frameRate;
+
+  cv::Mat frame;
+  while( vidCap.read(frame) )
+  {
+    cv::Mat outputFrame = processFrame( frame );
+    cv::imshow( windowName, outputFrame );
+
+    if( cv::waitKey(delay) >= 0 )
     {
-    // Convert the frame to ITK
-    InputImageType::Pointer itkFrame =
-      itk::OpenCVImageBridge::CVMatToITKImage< InputImageType >( frameIn );
-
-    // Filter the frame and cast to writable pixel type
-    filter->SetInput(itkFrame);
-    filter->Update();
-
-    // Convert the frame back to OpenCV and force the output to have 3 channels
-    frameOut = itk::OpenCVImageBridge::ITKImageToCVMat< OutputImageType >( filter->GetOutput(), true );
-
-    // Convert the data to unsigned char so it can be written
-    frameOut.convertTo( frameOut, CV_8U );
-
-    // Write the frame out
-    writer << frameOut;
+      break;
     }
+  }
+}
+
+
+// Iterate through a video, process each frame, and save the processed video.
+void processAndSaveVideo(cv::VideoCapture& vidCap, const std::string& filename)
+{
+  double frameRate = vidCap.get( CV_CAP_PROP_FPS );
+  int width = vidCap.get( CV_CAP_PROP_FRAME_WIDTH );
+  int height = vidCap.get( CV_CAP_PROP_FRAME_HEIGHT );
+
+  int fourcc = CV_FOURCC('D','I','V','X');
+  
+  cv::VideoWriter writer( filename, fourcc, frameRate,
+                          cv::Size(width, height) );
+
+  cv::Mat frame;
+  while( vidCap.read(frame) )
+  {
+    cv::Mat outputFrame = processFrame( frame );
+    writer << outputFrame;
+  }
+}
+
+
+int main ( int argc, char **argv )
+{
+  if( argc < 2 )
+  {
+    std::cout << "Usage: "<< argv[0] <<" input_image output_image"<<std::endl;
+    return -1;
+  }
+
+  cv::VideoCapture vidCap( argv[1] );
+  if( !vidCap.isOpened() )
+  {
+    std::cerr << "Unable to open video file: "<< argv[1] << std::endl;
+    return -1;
+  }
+
+  if(argc < 3)
+  {
+    processAndDisplayVideo( vidCap );
+  }
+  else
+  {
+    processAndSaveVideo( vidCap, argv[2] );
+  }
 
   return 0;
 }
+
+
 
