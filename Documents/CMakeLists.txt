@@ -5,6 +5,7 @@ if(NOT PDFLATEX_COMPILER)
 endif()
 
 file(GLOB_RECURSE PNG_FILES "*.png")
+file(GLOB_RECURSE JPG_FILES "*.jpg")
 
 add_subdirectory(Tutorial)
 
