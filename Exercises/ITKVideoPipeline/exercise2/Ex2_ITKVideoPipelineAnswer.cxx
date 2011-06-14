@@ -45,15 +45,11 @@ int main ( int argc, char **argv )
 
   typedef itk::VideoFileReader< IOVideoType >    ReaderType;
   typedef itk::VideoFileWriter< IOVideoType >    WriterType;
-  typedef itk::CastImageFilter< IOFrameType, RealFrameType >
-                                                 InputCastImageFilterType;
-  typedef itk::ImageFilterToVideoFilterWrapper< InputCastImageFilterType >
-                                                 InputCastVideoFilterType;
   typedef itk::CastImageFilter< RealFrameType, IOFrameType >
-                                                 OutputCastImageFilterType;
-  typedef itk::ImageFilterToVideoFilterWrapper< OutputCastImageFilterType >
-                                                 OutputCastVideoFilterType;
-  typedef itk::CurvatureFlowImageFilter< RealFrameType, RealFrameType >
+                                                 CastImageFilterType;
+  typedef itk::ImageFilterToVideoFilterWrapper< CastImageFilterType >
+                                                 CastVideoFilterType;
+  typedef itk::CurvatureFlowImageFilter< IOFrameType, RealFrameType >
                                                  ImageFilterType;
   typedef itk::ImageFilterToVideoFilterWrapper< ImageFilterType >
                                                  VideoFilterType;
@@ -65,10 +61,8 @@ int main ( int argc, char **argv )
   WriterType::Pointer writer = WriterType::New();
   ImageFilterType::Pointer imageFilter = ImageFilterType::New();
   VideoFilterType::Pointer videoFilter = VideoFilterType::New();
-  InputCastImageFilterType::Pointer inputImageCaster = InputCastImageFilterType::New();
-  InputCastVideoFilterType::Pointer inputVideoCaster = InputCastVideoFilterType::New();
-  OutputCastImageFilterType::Pointer outputImageCaster = OutputCastImageFilterType::New();
-  OutputCastVideoFilterType::Pointer outputVideoCaster = OutputCastVideoFilterType::New();
+  CastImageFilterType::Pointer imageCaster = CastImageFilterType::New();
+  CastVideoFilterType::Pointer videoCaster = CastVideoFilterType::New();
   FrameDifferenceFilterType::Pointer frameDifferenceFilter =
     FrameDifferenceFilterType::New();
 
@@ -78,17 +72,15 @@ int main ( int argc, char **argv )
 
   frameDifferenceFilter->SetFrameOffset(1);
 
-  inputVideoCaster->SetImageFilter( inputImageCaster );
-  outputVideoCaster->SetImageFilter( outputImageCaster );
+  videoCaster->SetImageFilter( imageCaster );
 
   imageFilter->SetTimeStep( 0.5 );
   imageFilter->SetNumberOfIterations( 20 );
   videoFilter->SetImageFilter( imageFilter );
 
-  inputVideoCaster->SetInput( reader->GetOutput() );
-  videoFilter->SetInput( inputVideoCaster->GetOutput() );
-  outputVideoCaster->SetInput( videoFilter->GetOutput() );
-  frameDifferenceFilter->SetInput( outputVideoCaster->GetOutput() );
+  videoFilter->SetInput( reader->GetOutput() );
+  videoCaster->SetInput( videoFilter->GetOutput() );
+  frameDifferenceFilter->SetInput( videoCaster->GetOutput() );
   writer->SetInput( frameDifferenceFilter->GetOutput() );
 
   try
