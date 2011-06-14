@@ -15,47 +15,64 @@
  *  limitations under the License.
  *
  *=========================================================================*/
-
 #include <iostream>
 
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
 #include <itkImage.h>
-#include <itkRGBPixel.h>
-#include <itkCurvatureFlowImageFilter.h>
+#include <itkCastImageFilter.h>
+#include <itkCannyEdgeDetectionImageFilter.h>
+#include <itkRescaleIntensityImageFilter.h>
 #include <itkOpenCVImageBridge.h>
 
 // Process a single frame of video and return the resulting frame
 cv::Mat processFrame( const cv::Mat& inputImage )
 {
-  const unsigned int Dimension =                   2;
-  typedef unsigned char                            InputPixelType;
-  typedef unsigned char                            OutputPixelType;
-  typedef itk::Image< InputPixelType, Dimension >  InputImageType;
-  typedef itk::Image< OutputPixelType, Dimension > OutputImageType;
+  typedef   unsigned char                          InputPixelType;
+  typedef   float                                  RealPixelType;
+  typedef   unsigned char                          OutputPixelType;
+  typedef itk::Image< InputPixelType,  2 >         InputImageType;
+  typedef itk::Image< RealPixelType,   2 >         RealImageType;
+  typedef itk::Image< OutputPixelType, 2 >         OutputImageType;
   typedef itk::OpenCVImageBridge                   BridgeType;
-  typedef itk::CurvatureFlowImageFilter< InputImageType, OutputImageType > 
+  typedef itk::CastImageFilter< InputImageType, RealImageType > 
+                                                   CastFilterType;
+  typedef itk::CannyEdgeDetectionImageFilter< RealImageType, RealImageType > 
                                                    FilterType;
+  typedef itk::RescaleIntensityImageFilter< RealImageType, OutputImageType >  
+                                                   RescaleFilterType;
 
-  FilterType::Pointer filter = FilterType::New();
-  filter->SetTimeStep( 0.5 );
-  filter->SetNumberOfIterations( 20 );
+  CastFilterType::Pointer caster = CastFilterType::New();
+  FilterType::Pointer canny = FilterType::New();
+  RescaleFilterType::Pointer rescaler = RescaleFilterType::New();
 
   InputImageType::Pointer itkFrame =
     itk::OpenCVImageBridge::CVMatToITKImage< InputImageType >( inputImage );
+  caster->SetInput( itkFrame );
+  canny->SetInput( caster->GetOutput() );
+  rescaler->SetInput( canny->GetOutput() );
 
-  filter->SetInput(itkFrame);
-  filter->Update();
+  canny->SetVariance( 6 );
+  canny->SetLowerThreshold( 1 );
+  canny->SetUpperThreshold( 8 );
+
+  try
+    {
+    rescaler->Update();
+    }
+  catch( itk::ExceptionObject & excp )
+    {
+    std::cerr << excp << std::endl;
+    }
 
   cv::Mat frameOut = 
-    BridgeType::ITKImageToCVMat< OutputImageType >(filter->GetOutput(),true);
+    BridgeType::ITKImageToCVMat< OutputImageType >(rescaler->GetOutput(),true);
 
   frameOut.convertTo( frameOut, CV_8U );
 
   return frameOut;
 }
-
 
 // Iterate through a video, process each frame, and display the result in a GUI.
 void processAndDisplayVideo(cv::VideoCapture& vidCap)
@@ -83,7 +100,6 @@ void processAndDisplayVideo(cv::VideoCapture& vidCap)
   }
 }
 
-
 // Iterate through a video, process each frame, and save the processed video.
 void processAndSaveVideo(cv::VideoCapture& vidCap, const std::string& filename)
 {
@@ -103,7 +119,6 @@ void processAndSaveVideo(cv::VideoCapture& vidCap, const std::string& filename)
     writer << outputFrame;
   }
 }
-
 
 int main ( int argc, char **argv )
 {
@@ -131,6 +146,3 @@ int main ( int argc, char **argv )
 
   return 0;
 }
-
-
-
