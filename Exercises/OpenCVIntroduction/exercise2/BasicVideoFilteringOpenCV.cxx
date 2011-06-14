@@ -66,18 +66,14 @@ void processAndSaveVideo(cv::VideoCapture& vidCap, const std::string& filename)
   int height = vidCap.get( CV_CAP_PROP_FRAME_HEIGHT );
 
   int fourcc = CV_FOURCC('D','I','V','X');
-  CvVideoWriter* vidWrite = cvCreateVideoWriter( filename.c_str(),
-                                                 fourcc, frameRate,
-                                                 cvSize(width, height) );
+  cv::VideoWriter vidWrite( filename, fourcc, frameRate,
+                            cvSize(width, height) );
   cv::Mat frame;
   while( vidCap.read(frame) )
   {
     cv::Mat outputFrame = processFrame( frame );
-    IplImage outputFrameIpl = IplImage(outputFrame);
-    cvWriteFrame( vidWrite, &outputFrameIpl );
+    vidWrite << outputFrame;
   }
-
-  cvReleaseVideoWriter( &vidWrite );
 }
 
 

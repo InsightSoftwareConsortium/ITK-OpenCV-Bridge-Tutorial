@@ -184,7 +184,7 @@ void cvtColor(const Mat& src, Mat& dst, int code);
 \begin{center}
 \begin{itemize}
 \item The first step is to open the video file and parse the headers.
-\lstlistingwithnumber{92}{97}{BasicVideoFilteringOpenCV.cxx}
+\lstlistingwithnumber{88}{93}{BasicVideoFilteringOpenCV.cxx}
 \item If unable to parse the headers then terminate the program.
 \end{itemize}
 \end{center}
@@ -200,9 +200,9 @@ void cvtColor(const Mat& src, Mat& dst, int code);
       or saving results.
 \item The processing code has been encapsulated into functions.
 \item If only input video is specified, then display the resulting video.
-\lstlistingwithnumber{99}{102}{BasicVideoFilteringOpenCV.cxx}
+\lstlistingwithnumber{95}{98}{BasicVideoFilteringOpenCV.cxx}
 \item If a second file is specified, then save the resulting video to the file.
-\lstlistingwithnumber{103}{106}{BasicVideoFilteringOpenCV.cxx}
+\lstlistingwithnumber{99}{102}{BasicVideoFilteringOpenCV.cxx}
 \end{itemize}
 \end{center}
 \end{frame}
@@ -252,8 +252,8 @@ void cvtColor(const Mat& src, Mat& dst, int code);
 \item Get the video properties as before.
 \lstlistingwithnumber{64}{66}{BasicVideoFilteringOpenCV.cxx}
 \item Specify that the output video will be encoded in DIVX format.
-\item Create a video writer object with the specified filename (C function).
-\lstlistingwithnumber{68}{71}{BasicVideoFilteringOpenCV.cxx}
+\item Create a video writer object with the specified filename.
+\lstlistingwithnumber{68}{70}{BasicVideoFilteringOpenCV.cxx}
 \end{itemize}
 \end{center}
 \end{frame}
@@ -265,13 +265,9 @@ void cvtColor(const Mat& src, Mat& dst, int code);
 \begin{center}
 \begin{itemize}
 \item Loop until no more frames can be read from the video capture object.
-\lstlistingwithnumber{72}{78}{BasicVideoFilteringOpenCV.cxx}
-\item Call {\tt\small processFrame()} on each frame and and display the result.
-\item Convert to the old {\tt\small IplImage} format
-      (required for {\tt\small cvWriteFrame()}).
-\item Write the resulting image to the output video file.
-\item Close the video file and release the memory for the writer.
-\lstlistingwithnumber{80}{80}{BasicVideoFilteringOpenCV.cxx}
+\lstlistingwithnumber{71}{76}{BasicVideoFilteringOpenCV.cxx}
+\item Call {\tt\small processFrame()} on each frame.
+\item Write the resulting image to the output video file with the insertion operator ({\tt\small <<}).
 \end{itemize}
 \end{center}
 \end{frame}
