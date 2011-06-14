@@ -41,9 +41,10 @@ Basic Image Filtering (Revisited)
 
 \begin{frame}
 \frametitle{Include Header Files}
+\framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridge.cxx}
 \begin{itemize}
 \item We include ITK and OpenCV headers (like before):
-\lstlistingwithnumber{21}{21}{Ex1_BasicFilteringOpenCVBridge.cxx}
+\lstlistingwithnumber{20}{21}{Ex1_BasicFilteringOpenCVBridge.cxx}
 \lstlistingwithnumber{23}{24}{Ex1_BasicFilteringOpenCVBridge.cxx}
 \item We also need to include the bridge header:
 \lstlistingwithnumber{25}{25}{Ex1_BasicFilteringOpenCVBridge.cxx}
@@ -52,16 +53,18 @@ Basic Image Filtering (Revisited)
 
 \begin{frame}
 \frametitle{Basic Layout}
+\framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridge.cxx}
 \begin{itemize}
 \item The basic layout of this file is the same as the OpenCV
   Examples:
-\lstlistingwithnumber{28}{36}{Ex1_BasicFilteringOpenCVBridge.cxx}
+\lstlistingwithnumber{27}{35}{Ex1_BasicFilteringOpenCVBridge.cxx}
 \lstlistingwithnumber{62}{75}{Ex1_BasicFilteringOpenCVBridge.cxx}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Adding ITK}
+\framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridge.cxx}
 \begin{itemize}
 \item The type definitions should also be familiar from the ITK Material:
 \lstinputlisting[linerange={38-45}]{Ex1_BasicFilteringOpenCVBridge.cxx}
@@ -73,6 +76,7 @@ between OpenCV and ITK.
 
 \begin{frame}
 \frametitle{From OpenCV to ITK}
+\framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridge.cxx}
 \begin{itemize}
 \item We call our conversion function to go from a cv::Mat to an
   itk::Image
@@ -82,6 +86,7 @@ between OpenCV and ITK.
 
 \begin{frame}
 \frametitle{Filtering with ITK}
+\framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridge.cxx}
 \begin{itemize}
 \item The median filtering is normal ITK code, but we do not connect our
 output to a writer
@@ -94,6 +99,7 @@ output to a writer
 
 \begin{frame}
 \frametitle{Running the Example}
+\framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridge.cxx}
 \begin{itemize}
 \item Running the example the same way as before, we see a nicely
 median-filtered image.
@@ -106,32 +112,35 @@ anisotropic diffusion filter built into ITK.
 \begin{frame}
 \begin{itemize}
 \frametitle{Exercise 1}
+\framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridge.cxx}
 \item Hint 1: Curvature Flow requires {\tt float} as the pixel
   type.
 \pause
 \item Hint 2: Curvature Flow does not take a radius parameter. It's
   salient functions are:
-\lstlistingwithnumber{49}{50}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
+\lstlistingwithnumber{50}{51}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \begin{itemize}
 \frametitle{Exercise 1 (Answer)}
+\framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridgeAnswer.cxx}
 \item First, change the included filter
-\lstlistingwithnumber{23}{23}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
+\lstlistingwithnumber{24}{24}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
 \pause
 \item The type definitions also need to change to reflect the new
   filter and output image types.
-\lstlistingwithnumber{36}{43}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
+\lstlistingwithnumber{37}{44}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \begin{itemize}
 \frametitle{Exercise 1 (Answer)}
+\framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridgeAnswer.cxx}
 \item The semantics of calling the filter also has to change:
-\lstlistingwithnumber{49}{50}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
+\lstlistingwithnumber{50}{51}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
 \pause
 \item That's it! Now you're using a ``better'' blurring scheme.
 \end{itemize}
@@ -140,7 +149,8 @@ anisotropic diffusion filter built into ITK.
 \begin{frame}
 \begin{itemize}
 \frametitle{Exercise 1 (Answer)}
+\framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridgeAnswer.cxx}
 \item The final pipeline should look like this:
-\lstlistingwithnumber{34}{56}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
+\lstlistingwithnumber{35}{57}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
 \end{itemize}
 \end{frame}

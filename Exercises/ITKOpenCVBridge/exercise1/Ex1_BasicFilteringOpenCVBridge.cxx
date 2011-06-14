@@ -15,7 +15,6 @@
  *  limitations under the License.
  *
  *=========================================================================*/
-
 #include <iostream>
 
 #include <opencv2/imgproc/imgproc.hpp>
