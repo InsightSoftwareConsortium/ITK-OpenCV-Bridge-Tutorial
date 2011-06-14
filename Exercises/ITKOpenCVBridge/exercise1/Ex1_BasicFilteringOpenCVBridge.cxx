@@ -15,7 +15,6 @@
  *  limitations under the License.
  *
  *=========================================================================*/
-
 #include <iostream>
 
 #include <opencv2/imgproc/imgproc.hpp>
@@ -54,7 +53,15 @@ int main ( int argc, char **argv )
   filter->SetRadius( neighborhoodRadius );
 
   filter->SetInput( itkImage );
-  filter->Update();
+  try
+    {
+    filter->Update();
+    }
+  catch( itk::ExceptionObject & excp )
+    {
+    std::cerr << excp << std::endl;
+    return EXIT_FAILURE;
+    }
 
   cv::Mat resultImage =
     BridgeType::ITKImageToCVMat< OutputImageType >( filter->GetOutput() );
@@ -64,7 +71,9 @@ int main ( int argc, char **argv )
     std::string windowName = "Exercise 1: Basic Filtering in OpenCV & ITK";
     cv::namedWindow( windowName, CV_WINDOW_FREERATIO);
     cvResizeWindow( windowName.c_str(), resultImage.cols, resultImage.rows+50 );
-    cv::imshow( windowName, resultImage );
+    cv::Mat scaled;
+    resultImage.convertTo( scaled, CV_8UC1 );
+    cv::imshow( windowName, scaled );
     cv::waitKey();
   }
   else

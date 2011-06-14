@@ -15,7 +15,6 @@
  *  limitations under the License.
  *
  *=========================================================================*/
-
 #include <iostream>
 
 #include <opencv2/imgproc/imgproc.hpp>
@@ -24,7 +23,6 @@
 #include <itkImage.h>
 #include <itkMedianImageFilter.h>
 #include <itkOpenCVImageBridge.h>
-
 
 // Process a single frame of video and return the resulting frame
 cv::Mat processFrame( const cv::Mat& inputImage )
@@ -40,20 +38,26 @@ cv::Mat processFrame( const cv::Mat& inputImage )
 
   FilterType::Pointer filter = FilterType::New();
   InputImageType::SizeType neighborhoodRadius;
-  neighborhoodRadius[0] = 10;
-  neighborhoodRadius[1] = 10;
+  neighborhoodRadius[0] = 9;
+  neighborhoodRadius[1] = 9;
   filter->SetRadius( neighborhoodRadius );
 
   InputImageType::Pointer itkFrame =
     BridgeType::CVMatToITKImage< InputImageType >( inputImage );
 
   filter->SetInput(itkFrame);
-  filter->Update();
+  try
+    {
+    filter->Update();
+    }
+  catch( itk::ExceptionObject & excp )
+    {
+    std::cerr << excp << std::endl;
+    }
 
   return BridgeType::ITKImageToCVMat<OutputImageType>( filter->GetOutput(),
                                                        true );
 }
-
 
 // Iterate through a video, process each frame, and display the result in a GUI.
 void processAndDisplayVideo(cv::VideoCapture& vidCap)
@@ -81,7 +85,6 @@ void processAndDisplayVideo(cv::VideoCapture& vidCap)
   }
 }
 
-
 // Iterate through a video, process each frame, and save the processed video.
 void processAndSaveVideo(cv::VideoCapture& vidCap, const std::string& filename)
 {
@@ -101,7 +104,6 @@ void processAndSaveVideo(cv::VideoCapture& vidCap, const std::string& filename)
     writer << outputFrame;
   }
 }
-
 
 int main ( int argc, char **argv )
 {
