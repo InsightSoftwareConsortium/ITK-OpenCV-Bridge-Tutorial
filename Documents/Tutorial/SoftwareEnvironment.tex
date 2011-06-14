@@ -5,42 +5,91 @@ Software Environment
 }
 
 \begin{frame}
-\frametitle{Software Environment}
+\frametitle{Welcome to Ubuntu GNU/Linux}
+\begin{center}
+\includegraphics[height=0.5\paperheight]{Tux.png}
+\includegraphics[width=0.5\paperwidth]{blackeubuntulogo.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{How to take the mouse out of the Virtual Machine}
 \begin{itemize}
-\item Welcome to Ubuntu Linux !
+\item Hit the \textbf{RIGHT CTRL} Key
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{How to take the mouse out of the VM}
-\begin{itemize}
-\item Press the \textbf{RIGHT CTRL} Key
-\end{itemize}
+\frametitle{How to Open a Terminal - Icon in Upper Left Corner}
+\framesubtitle{To type your command line instructions}
+\begin{center}
+\includegraphics[width=0.7\paperwidth]{Screenshot-OpenTerminal.jpg}
+\end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Quick Course on Linux Commands}
-\begin{itemize}
-\item Opening terminal
-\item Changing directories
-\item Show them nautilus
-\item add a Desktop shortcut to the exercises
-\item Printing working directory
-\item Editing (gedit) associate .cxx files with gedit in the VM
-\item Running Cmake
-\item make..
-\end{itemize}
+\frametitle{How to Open a Terminal - Icon in Upper Left Corner}
+\framesubtitle{To type your command line instructions}
+\begin{center}
+\includegraphics[width=0.7\paperwidth]{Screenshot-Terminal.jpg}
+\end{center}
 \end{frame}
 
-
 \begin{frame}
+\frametitle{How to Navigate Directories}
+\framesubtitle{Double Click in Folder Icons in the Desktop}
+\begin{center}
+\includegraphics[width=0.7\paperwidth]{Screenshot-Nautilus.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
 \frametitle{Walk through the directories}
 \begin{itemize}
-\item find source of exercises
-\item find binary of exercises
-\item show them how to build
-\item show them how to run cmake
-\item show them how to view an image (eog)
-\item show them how to see a video
+\item Find source code of exercises
+\end{itemize}
+\begin{verbatim}
+cd ~/src/ITK-OpenCV-Bridge-Tutorial/Exercises
+pwd
+ls
+nautilus .
+\end{verbatim}
+\begin{itemize}
+\pause
+\item Find binary build of exercises
+\begin{verbatim}
+cd ~/bin/ITK-OpenCV-Bridge-Tutorial/Exercises
+pwd
+ls
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to View Images}
+\begin{itemize}
+\item Go to the directory
+\item Invoke "eye of gnome" eog application
+\begin{verbatim}
+cd ~/data
+eog baboon.png
+\end{verbatim}
+\pause
+\item Hit ESC key to quit the application
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to View Videos}
+\begin{itemize}
+\item Go to the directory
+\item Invoke "VideoLAN" vlc application
+\begin{verbatim}
+cd ~/data
+vlc Walk1.mpg
+\end{verbatim}
+\pause
+\item Hit CTRL-Q to quit the application
+\item or use the menus
 \end{itemize}
 \end{frame}
