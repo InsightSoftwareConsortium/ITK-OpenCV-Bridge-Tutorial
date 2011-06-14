@@ -70,7 +70,7 @@ Basic Image Filtering (Revisited)
 \lstlistingwithnumber{38}{45}{Ex1_BasicFilteringOpenCVBridge.cxx}
 \item However, notice the bridge class. It contains the conversion function
 between OpenCV and ITK.
-\lstlistingwithnumber{43}{43}{Ex1_BasicFilteringOpenCVBridge.cxx}
+\lstlistingwithnumber{42}{42}{Ex1_BasicFilteringOpenCVBridge.cxx}
 \end{itemize}
 \end{frame}
 
@@ -113,7 +113,7 @@ anisotropic diffusion filter built into ITK.
 \begin{itemize}
 \frametitle{Exercise 1}
 \framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridge.cxx}
-\item Hint 1: Curvature Flow requires {\tt float} as the pixel
+\item Hint 1: Curvature Flow requires {\tt float} as the output pixel
   type.
 \pause
 \item Hint 2: Curvature Flow does not take a radius parameter. It's
@@ -124,7 +124,7 @@ anisotropic diffusion filter built into ITK.
 
 \begin{frame}
 \begin{itemize}
-\frametitle{Exercise 1 (Answer)}
+\frametitle{Exercise 1: Answer}
 \framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridgeAnswer.cxx}
 \item First, change the included filter
 \lstlistingwithnumber{24}{24}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
@@ -137,7 +137,7 @@ anisotropic diffusion filter built into ITK.
 
 \begin{frame}
 \begin{itemize}
-\frametitle{Exercise 1 (Answer)}
+\frametitle{Exercise 1: Answer}
 \framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridgeAnswer.cxx}
 \item The semantics of calling the filter also has to change:
 \lstlistingwithnumber{50}{51}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
@@ -148,12 +148,37 @@ anisotropic diffusion filter built into ITK.
 
 \begin{frame}
 \begin{itemize}
-\frametitle{Exercise 1 (Answer)}
+\frametitle{Exercise 1: Answer}
 \framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridgeAnswer.cxx}
 \item The final pipeline should look like this:
 \lstlistingwithnumber{35}{35}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
 \lstlistingwithnumber{46}{62}{Ex1_BasicFilteringOpenCVBridgeAnswer.cxx}
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\frametitle{Exercise 1: Answer}
+\framesubtitle{ITKOpenCVBridge/exercise1/Ex1\_BasicFilteringOpenCVBridgeAnswer.cxx}
+\item The results should look like this:
+\end{itemize}
+\begin{columns}[c]
+\column{0.33\textwidth}
+\begin{center}
+\includegraphics[width=1\textwidth]{mandrilgray.png} \\
+Original
+\end{center}
+\column{0.33\textwidth}
+\begin{center}
+\includegraphics[width=1\textwidth]{OpenCVITKex1.png} \\
+Median Filter
+\end{center}
+\column{0.33\textwidth}
+\begin{center}
+\includegraphics[width=1\textwidth]{OpenCVITKex1-ans.png} \\
+Curvature Flow
+\end{center}
+\end{columns}
 \end{frame}
 
 \centeredlargetext{white}{black}{
@@ -202,7 +227,7 @@ cast image filter for producing output
 
 \begin{frame}
 \begin{itemize}
-\frametitle{Exercise 2 (Answer)}
+\frametitle{Exercise 2: Answer}
 \framesubtitle{ITKOpenCVBridge/exercise2/Ex2\_BasicFilteringOpenCVBridgeAnswer.cxx}
 \item You should now have some extra typedefs:
 \lstlistingwithnumber{39}{44}{Ex2_BasicFilteringOpenCVBridgeAnswer.cxx}
@@ -211,7 +236,7 @@ cast image filter for producing output
 
 \begin{frame}
 \begin{itemize}
-\frametitle{Exercise 2 (Answer)}
+\frametitle{Exercise 2: Answer}
 \framesubtitle{ITKOpenCVBridge/exercise2/Ex2\_BasicFilteringOpenCVBridgeAnswer.cxx}
 \item Your new ITK pipeline will look like this:
 \lstlistingwithnumber{46}{67}{Ex2_BasicFilteringOpenCVBridgeAnswer.cxx}
@@ -220,7 +245,7 @@ cast image filter for producing output
 
 \begin{frame}
 \begin{itemize}
-\frametitle{Exercise 2 (Answer)}
+\frametitle{Exercise 2: Answer}
 \framesubtitle{ITKOpenCVBridge/exercise2/Ex2\_BasicFilteringOpenCVBridgeAnswer.cxx}
 \item Your new ITK pipeline will look like this:
 \lstlistingwithnumber{69}{74}{Ex2_BasicFilteringOpenCVBridgeAnswer.cxx}
