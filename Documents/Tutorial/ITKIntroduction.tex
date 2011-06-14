@@ -40,7 +40,7 @@ You will typically do:
 \begin{itemize}
 \item Read images from files
 \item Write images from files
-\item Apply a median filter in an image
+\item Apply a Median filter in an image
 \end{itemize}
 \end{frame}
 }
@@ -191,10 +191,11 @@ cd itkexercise1
 \item You will get an error message
 \end{itemize}
 \begin{center}
-  \includegraphics[width=0.3\paperwidth]{Screenshot-CMakeGUI-03.png}
+  \includegraphics[width=0.4\paperwidth]{Screenshot-CMakeGUI-03.png}
 \end{center}
 \begin{itemize}
-\item Because the project needs ITK and we have not provided it yet
+\item Because the project needs ITK
+\item and we have not provided ITK\_DIR yet
 \end{itemize}
 \end{frame}
 
@@ -288,7 +289,7 @@ eog ./baboongrayMedian.png &
 \begin{frame}[fragile]
 \frametitle{ITK Doxygen Documentation}
 \begin{center}
-  \includegraphics[width=0.7\paperwidth]{Screenshot-ITKDoxygen-01.png}
+  \includegraphics[scale=0.3]{Screenshot-ITKDoxygen-01.png}
 \end{center}
 \end{frame}
 
@@ -298,8 +299,7 @@ eog ./baboongrayMedian.png &
 \begin{itemize}
 \item First we replace the Header file:
 \lstlistingwithnumber{21}{21}{BasicImageFilteringITKAnswer1.cxx}
-\end{itemize}
-\begin{itemize}
+\pause
 \item Then we replace the Filter instantiation:
 \lstlistingwithnumber{49}{49}{BasicImageFilteringITKAnswer1.cxx}
 \end{itemize}
@@ -368,6 +368,121 @@ cd ~/bin/ITK-OpenCV-Bridge-Tutorial/Exercises
 \begin{frame}
 \frametitle{Basic Filtering - Canny Filter}
 \framesubtitle{ITKIntroduction/exercise1/BasicImageFilteringITKAnswer2.cxx}
+\begin{itemize}
+\item Some filters expect specific pixel types
+\pause
+\item Canny Edge detection is an example
+\pause
+\item Here we Cast the image before Canny
+\pause
+\item Then we Cast/Rescale it after Canny
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Basic Filtering - Canny Filter}
+\framesubtitle{ITKIntroduction/exercise1/BasicImageFilteringITKAnswer2.cxx}
+\begin{itemize}
+\item Let's start with the relevant headers:
+\pause
 \lstlistingwithnumber{21}{23}{BasicImageFilteringITKAnswer2.cxx}
+\pause
+\item We then declare the relevant pixel types
+\pause
+\lstlistingwithnumber{34}{36}{BasicImageFilteringITKAnswer2.cxx}
+\pause
+\item Then we declare the relevant image types
+\pause
+\lstlistingwithnumber{38}{40}{BasicImageFilteringITKAnswer2.cxx}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Basic Filtering - Canny Filter}
+\framesubtitle{ITKIntroduction/exercise1/BasicImageFilteringITKAnswer2.cxx}
+\begin{itemize}
+\item We declare the Casting filter and instantiate it:
+\pause
+\lstlistingwithnumber{52}{55}{BasicImageFilteringITKAnswer2.cxx}
+\pause
+\item We declare and instantiate the Canny filter:
+\pause
+\lstlistingwithnumber{58}{61}{BasicImageFilteringITKAnswer2.cxx}
+\pause
+\item and do the same for the RescaleIntensity filter:
+\pause
+\lstlistingwithnumber{64}{67}{BasicImageFilteringITKAnswer2.cxx}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Basic Filtering - Canny Filter}
+\framesubtitle{ITKIntroduction/exercise1/BasicImageFilteringITKAnswer2.cxx}
+\begin{itemize}
+\item We connect the pipeline:
+\pause
+\lstlistingwithnumber{70}{73}{BasicImageFilteringITKAnswer2.cxx}
+\pause
+\item Set the parameters of the Canny Edge detection filter:
+\pause
+\lstlistingwithnumber{76}{78}{BasicImageFilteringITKAnswer2.cxx}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Basic Filtering - Canny Filter}
+\framesubtitle{ITKIntroduction/exercise1/BasicImageFilteringITKAnswer2.cxx}
+\begin{itemize}
+\item Trigger the execution of the pipeline:
+\pause
+\lstlistingwithnumber{81}{89}{BasicImageFilteringITKAnswer2.cxx}
+\pause
+\item Note that the pipeline only runs when we call Update()
+\pause
+\item That's the point where we should catch exceptions
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to Run}
+\framesubtitle{/home/tutorial/bin/itkexercise1}
+\begin{itemize}
+\item While in the binary directory:
+\begin{verbatim}
+/home/tutorial/bin/itkexercise1
+\end{verbatim}
+\pause
+\item In the command line type:
+\begin{verbatim}
+./BasicImageFilteringITKAnswer2    \
+      ~/data/baboongray.png        \
+      ./baboongrayCanny.png        \
+      6  1  8
+\end{verbatim}
+\pause
+\item 6 = Variance for Gaussian
+\item 1 = Lower Threshold
+\item 8 = Upper Threshold
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{How to View the Result}
+\framesubtitle{Image viewing application ``eye of gnome'': eog}
+\begin{itemize}
+\item In the command line type:
+\begin{verbatim}
+eog ~/data/baboongray.jpg &
+eog ./baboongrayCanny.png &
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Result of Canny Filter}
+\begin{center}
+  \includegraphics[width=0.45\paperwidth]{Screenshot-baboongray-01.png}
+  \includegraphics[width=0.45\paperwidth]{Screenshot-baboongrayCanny-01.png}
+\end{center}
 \end{frame}
 
