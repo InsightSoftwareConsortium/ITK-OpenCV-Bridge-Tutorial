@@ -127,11 +127,11 @@ ITK Video Filters
 \framesubtitle{Replace median filter with curvature flow filter}
 \begin{itemize}
 \item Hint 1: Curvature Flow requires {\tt float} as the pixel
-  type for both input and output.
+  type for output.
 \pause
 
 \item Hint 2: OpenCV uses ffmpeg which requires {\tt unsigned char}
-  as the pixel type for reading and writing.
+  as the pixel type for writing.
 \pause
 
 \item Hint 3: Curvature Flow does not take a radius parameter. It's
@@ -167,13 +167,13 @@ ITK Video Filters
 \frametitle{Excercise 1: Answer}
 \framesubtitle{Replace median filter with curvature flow filter}
 \begin{itemize}
-\item Define cast filters to go between IO and Real pixel types
-\lstlistingwithnumber{47}{54}{Ex1_ITKVideoPipelineAnswer.cxx}
+\item Define cast filter to convert from Real to IO pixel type
+\lstlistingwithnumber{47}{50}{Ex1_ITKVideoPipelineAnswer.cxx}
 \pause
 
 \item Replace median filter with curvature flow filter
-\item Use Real pixel type
-\lstlistingwithnumber{55}{58}{Ex1_ITKVideoPipelineAnswer.cxx}
+\item Use Real pixel type for output
+\lstlistingwithnumber{51}{54}{Ex1_ITKVideoPipelineAnswer.cxx}
 \end{itemize}
 \end{frame}
 }
@@ -184,18 +184,18 @@ ITK Video Filters
 \frametitle{Excercise 1: Answer}
 \framesubtitle{Replace median filter with curvature flow filter}
 \begin{itemize}
-\item Set up video cast filters
-\lstlistingwithnumber{74}{75}{Ex1_ITKVideoPipelineAnswer.cxx}
+\item Set up video cast filter
+\lstlistingwithnumber{68}{68}{Ex1_ITKVideoPipelineAnswer.cxx}
 \pause
 
 \item Set up curvature flow filter
-\lstlistingwithnumber{77}{79}{Ex1_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{70}{72}{Ex1_ITKVideoPipelineAnswer.cxx}
 \pause
 
 \item Connect the pipeline
-\item reader $\rightarrow$ input caster $\rightarrow$ curvature
+\item reader $\rightarrow$ curvature
   flow $\rightarrow$ output caster $\rightarrow$ writer
-\lstlistingwithnumber{81}{84}{Ex1_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{74}{76}{Ex1_ITKVideoPipelineAnswer.cxx}
 \end{itemize}
 \end{frame}
 }
@@ -217,7 +217,7 @@ ITK Video Filters
 \pause
 
 \item Hint 2: Difference filter's important parameter is:
-\lstlistingwithnumber{79}{79}{Ex2_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{73}{73}{Ex2_ITKVideoPipelineAnswer.cxx}
 \item This sets the spacing of the frames to be differenced. Setting
   it to 1 means adjacent frames will be used.
 \end{itemize}
@@ -236,11 +236,11 @@ ITK Video Filters
 
 \item Define type for frame difference filter
 \item Since this is a native video filter, no wrapper is necessary
-\lstlistingwithnumber{61}{62}{Ex2_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{57}{58}{Ex2_ITKVideoPipelineAnswer.cxx}
 \pause
 
 \item Create frame difference filter
-\lstlistingwithnumber{72}{73}{Ex2_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{66}{67}{Ex2_ITKVideoPipelineAnswer.cxx}
 \end{itemize}
 \end{frame}
 }
@@ -252,13 +252,13 @@ ITK Video Filters
 \framesubtitle{Compute frame differences after diffusion}
 \begin{itemize}
 \item Set the frame offset to 1
-\lstlistingwithnumber{79}{79}{Ex2_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{73}{73}{Ex2_ITKVideoPipelineAnswer.cxx}
 \pause
 
 \item Connect the pipeline
-\item reader $\rightarrow$ input caster $\rightarrow$ curvature flow
-  $\rightarrow$ output caster $\rightarrow$ frame differ $\rightarrow$ writer
-\lstlistingwithnumber{88}{92}{Ex2_ITKVideoPipelineAnswer.cxx}
+\item reader $\rightarrow$ curvature flow $\rightarrow$ output caster
+  $\rightarrow$ frame differ $\rightarrow$ writer
+\lstlistingwithnumber{81}{84}{Ex2_ITKVideoPipelineAnswer.cxx}
 \end{itemize}
 \end{frame}
 }
