@@ -19,10 +19,9 @@
 #include <iostream>
 
 #include <itkVideoStream.h>
-#include <itkImageFilterToVideoFilterWrapper.h>
 #include <itkCurvatureFlowImageFilter.h>
 #include <itkCastImageFilter.h>
-#include <itkRescaleIntensityImageFilter.h>
+#include <itkImageFilterToVideoFilterWrapper.h>
 #include <itkVideoFileReader.h>
 #include <itkVideoFileWriter.h>
 #include <itkOpenCVVideoIOFactory.h>
@@ -46,43 +45,43 @@ int main ( int argc, char **argv )
   typedef itk::VideoFileReader< IOVideoType >    ReaderType;
   typedef itk::VideoFileWriter< IOVideoType >    WriterType;
   typedef itk::CastImageFilter< IOFrameType, RealFrameType >
-                                                 CastImageFilterType;
-  typedef itk::ImageFilterToVideoFilterWrapper< CastImageFilterType >
-                                                 CastVideoFilterType;
-  typedef itk::RescaleIntensityImageFilter< RealFrameType, IOFrameType >
-                                                 RescaleImageFilterType;
-  typedef itk::ImageFilterToVideoFilterWrapper< RescaleImageFilterType >
-                                                 RescaleVideoFilterType;
+                                                 InputCastImageFilterType;
+  typedef itk::ImageFilterToVideoFilterWrapper< InputCastImageFilterType >
+                                                 InputCastVideoFilterType;
+  typedef itk::CastImageFilter< RealFrameType, IOFrameType >
+                                                 OutputCastImageFilterType;
+  typedef itk::ImageFilterToVideoFilterWrapper< OutputCastImageFilterType >
+                                                 OutputCastVideoFilterType;
   typedef itk::CurvatureFlowImageFilter< RealFrameType, RealFrameType >
                                                  ImageFilterType;
   typedef itk::ImageFilterToVideoFilterWrapper< ImageFilterType >
                                                  VideoFilterType;
 
-  itk::ObjectFactoryBase::RegisterFactory( itk::OpenCVVideoIOFactory::New() );
-
   ReaderType::Pointer reader = ReaderType::New();
   WriterType::Pointer writer = WriterType::New();
   ImageFilterType::Pointer imageFilter = ImageFilterType::New();
   VideoFilterType::Pointer videoFilter = VideoFilterType::New();
-  CastImageFilterType::Pointer imageCaster = CastImageFilterType::New();
-  CastVideoFilterType::Pointer videoCaster = CastVideoFilterType::New();
-  RescaleImageFilterType::Pointer imageRescaler = RescaleImageFilterType::New();
-  RescaleVideoFilterType::Pointer videoRescaler = RescaleVideoFilterType::New();
+  InputCastImageFilterType::Pointer inputImageCaster = InputCastImageFilterType::New();
+  InputCastVideoFilterType::Pointer inputVideoCaster = InputCastVideoFilterType::New();
+  OutputCastImageFilterType::Pointer outputImageCaster = OutputCastImageFilterType::New();
+  OutputCastVideoFilterType::Pointer outputVideoCaster = OutputCastVideoFilterType::New();
 
+
+  itk::ObjectFactoryBase::RegisterFactory( itk::OpenCVVideoIOFactory::New() );
   reader->SetFileName( argv[1] );
   writer->SetFileName( argv[2] );
 
-  videoCaster->SetImageFilter( imageCaster );
-  videoRescaler->SetImageFilter( imageRescaler );
+  inputVideoCaster->SetImageFilter( inputImageCaster );
+  outputVideoCaster->SetImageFilter( outputImageCaster );
 
   imageFilter->SetTimeStep( 0.5 );
   imageFilter->SetNumberOfIterations( 20 );
   videoFilter->SetImageFilter( imageFilter );
 
-  videoCaster->SetInput( reader->GetOutput() );
-  videoFilter->SetInput( videoCaster->GetOutput() );
-  videoRescaler->SetInput( videoFilter->GetOutput() );
-  writer->SetInput( videoRescaler->GetOutput() );
+  inputVideoCaster->SetInput( reader->GetOutput() );
+  videoFilter->SetInput( inputVideoCaster->GetOutput() );
+  outputVideoCaster->SetInput( videoFilter->GetOutput() );
+  writer->SetInput( outputVideoCaster->GetOutput() );
 
   try
     {

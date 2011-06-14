@@ -19,8 +19,8 @@
 #include <iostream>
 
 #include <itkVideoStream.h>
-#include <itkImageFilterToVideoFilterWrapper.h>
 #include <itkMedianImageFilter.h>
+#include <itkImageFilterToVideoFilterWrapper.h>
 #include <itkVideoFileReader.h>
 #include <itkVideoFileWriter.h>
 #include <itkOpenCVVideoIOFactory.h>
@@ -44,13 +44,12 @@ int main ( int argc, char **argv )
   typedef itk::ImageFilterToVideoFilterWrapper< ImageFilterType >
                                                          VideoFilterType;
 
-  itk::ObjectFactoryBase::RegisterFactory( itk::OpenCVVideoIOFactory::New() );
-
   ReaderType::Pointer reader = ReaderType::New();
+  WriterType::Pointer writer = WriterType::New();
   ImageFilterType::Pointer imageFilter = ImageFilterType::New();
   VideoFilterType::Pointer videoFilter = VideoFilterType::New();
-  WriterType::Pointer writer = WriterType::New();
 
+  itk::ObjectFactoryBase::RegisterFactory( itk::OpenCVVideoIOFactory::New() );
   reader->SetFileName( argv[1] );
   writer->SetFileName( argv[2] );
 

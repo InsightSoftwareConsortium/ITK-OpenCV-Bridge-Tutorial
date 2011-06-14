@@ -5,5 +5,260 @@
 ITK Video Filters
 }
 
+%%%%
+% Introduction Page
+%%%%
+\begin{frame}
+\frametitle{Introduction}
+\begin{itemize}
+\item Support video processing natively in ITK
+\item Standard framework for multi-frame filters
+\item Use ITK's library of image filters in video context
+\end{itemize}
+\end{frame}
 
 
+%%%%
+% Code walkthrough
+%%%%
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[fragile]
+\frametitle{Video Filtering - Median Filter}
+\framesubtitle{ITKVideoPipeline/exercise1/Ex1\_ITKVideoPipeline.cxx}
+
+\begin{itemize}
+\item Video data structure
+\lstlistingwithnumber{21}{21}{Ex1_ITKVideoPipeline.cxx}
+\pause
+
+\item Video file reader and writer
+\item Use OpenCV for video IO
+\lstlistingwithnumber{24}{26}{Ex1_ITKVideoPipeline.cxx}
+\pause
+
+\item Median image filter
+\item Image filter $\rightarrow$ video filter wrapper
+\lstlistingwithnumber{22}{23}{Ex1_ITKVideoPipeline.cxx}
+\end{itemize}
+\end{frame}
+}
+
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[fragile]
+\frametitle{Video Filtering - Median Filter}
+\framesubtitle{ITKVideoPipeline/exercise1/Ex1\_ITKVideoPipeline.cxx}
+\begin{itemize}
+\item Types for data structures
+\lstlistingwithnumber{36}{39}{Ex1_ITKVideoPipeline.cxx}
+\pause
+
+\item Types reader and writer
+\lstlistingwithnumber{41}{42}{Ex1_ITKVideoPipeline.cxx}
+\pause
+
+\item Types for video median filter
+\item Use image filter type to define video filter type
+\lstlistingwithnumber{43}{45}{Ex1_ITKVideoPipeline.cxx}
+\end{itemize}
+\end{frame}
+}
+
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[fragile]
+\frametitle{Video Filtering - Median Filter}
+\framesubtitle{ITKVideoPipeline/exercise1/Ex1\_ITKVideoPipeline.cxx}
+\begin{itemize}
+\item Create reader and writer
+\lstlistingwithnumber{47}{48}{Ex1_ITKVideoPipeline.cxx}
+\pause
+
+\item Create image filter and video median filters
+\lstlistingwithnumber{49}{50}{Ex1_ITKVideoPipeline.cxx}
+\end{itemize}
+\end{frame}
+}
+
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[fragile]
+\frametitle{Video Filtering - Median Filter}
+\framesubtitle{ITKVideoPipeline/exercise1/Ex1\_ITKVideoPipeline.cxx}
+\begin{itemize}
+\item Set up reader and writer
+\item Tell ITK that we're using OpenCV for IO
+\lstlistingwithnumber{52}{54}{Ex1_ITKVideoPipeline.cxx}
+\pause
+
+\item Set up radius for (image) median filter
+\item Set video filter wrapper to use image median filter internally
+\lstlistingwithnumber{56}{60}{Ex1_ITKVideoPipeline.cxx}
+\end{itemize}
+\end{frame}
+}
+
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[fragile]
+\frametitle{Video Filtering - Median Filter}
+\framesubtitle{ITKVideoPipeline/exercise1/Ex1\_ITKVideoPipeline.cxx}
+\begin{itemize}
+\item Connect the pipeline
+\item reader $\rightarrow$ videoFilter $\rightarrow$ writer
+\lstlistingwithnumber{62}{63}{Ex1_ITKVideoPipeline.cxx}
+\pause
+
+\item Try calling Update() to process the entire video
+\lstlistingwithnumber{65}{73}{Ex1_ITKVideoPipeline.cxx}
+\end{itemize}
+\end{frame}
+}
+
+
+%%%%
+% Excersize 1
+%%%%
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[fragile]
+\frametitle{Excercise 1}
+\framesubtitle{Replace median filter with curvature flow filter}
+\begin{itemize}
+\item Hint 1: Curvature Flow requires {\tt float} as the pixel
+  type for both input and output.
+\pause
+
+\item Hint 2: OpenCV uses ffmpeg which requires {\tt unsigned char}
+  as the pixel type for reading and writing.
+\pause
+
+\item Hint 3: Curvature Flow does not take a radius parameter. It's
+  salient functions are:
+\lstlistingwithnumber{78}{79}{Ex1_ITKVideoPipelineAnswer.cxx}
+\pause
+
+\item Hint 4: To use an image filter in a video pipeline use
+  {\tt ImageFilterToVideoFilterWrapper}
+\end{itemize}
+\end{frame}
+}
+
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[fragile]
+\frametitle{Excercise 1: Answer}
+\framesubtitle{Replace median filter with curvature flow filter}
+\begin{itemize}
+\item Include curvature and cast image filters
+\lstlistingwithnumber{22}{23}{Ex1_ITKVideoPipelineAnswer.cxx}
+\pause
+
+\item Re-define types using seperate IO and Real pixel types
+\lstlistingwithnumber{36}{43}{Ex1_ITKVideoPipelineAnswer.cxx}
+\end{itemize}
+\end{frame}
+}
+
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[fragile]
+\frametitle{Excercise 1: Answer}
+\framesubtitle{Replace median filter with curvature flow filter}
+\begin{itemize}
+\item Define cast filters to go between IO and Real pixel types
+\lstlistingwithnumber{47}{54}{Ex1_ITKVideoPipelineAnswer.cxx}
+\pause
+
+\item Replace median filter with curvature flow filter
+\item Use Real pixel type
+\lstlistingwithnumber{55}{58}{Ex1_ITKVideoPipelineAnswer.cxx}
+\end{itemize}
+\end{frame}
+}
+
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[fragile]
+\frametitle{Excercise 1: Answer}
+\framesubtitle{Replace median filter with curvature flow filter}
+\begin{itemize}
+\item Set up video cast filters
+\lstlistingwithnumber{74}{75}{Ex1_ITKVideoPipelineAnswer.cxx}
+\pause
+
+\item Set up curvature flow filter
+\lstlistingwithnumber{77}{79}{Ex1_ITKVideoPipelineAnswer.cxx}
+\pause
+
+\item Connect the pipeline
+\item reader $\rightarrow$ input caster $\rightarrow$ curvature
+  flow $\rightarrow$ output caster $\rightarrow$ writer
+\lstlistingwithnumber{81}{84}{Ex1_ITKVideoPipelineAnswer.cxx}
+\end{itemize}
+\end{frame}
+}
+
+
+%%%%
+% Excersize 2
+%%%%
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[fragile]
+\frametitle{Excercise 2}
+\framesubtitle{Compute frame differences after diffusion}
+\begin{itemize}
+\item Start with solution to Excersize 1 (Ex2\_ITKVideoPipeline.cxx)
+\pause
+
+\item Hint 1: Use FrameDifferenceVideoFilter
+\pause
+
+\item Hint 2: Difference filter's important parameter is:
+\lstlistingwithnumber{79}{79}{Ex2_ITKVideoPipelineAnswer.cxx}
+\item This sets the spacing of the frames to be differenced. Setting
+  it to 1 means adjacent frames will be used.
+\end{itemize}
+\end{frame}
+}
+
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[fragile]
+\frametitle{Excercise 2: Answer}
+\framesubtitle{Compute frame differences after diffusion}
+\begin{itemize}
+\item Include frame difference filter
+\lstlistingwithnumber{25}{25}{Ex2_ITKVideoPipelineAnswer.cxx}
+\pause
+
+\item Define type for frame difference filter
+\item Since this is a native video filter, no wrapper is necessary
+\lstlistingwithnumber{61}{62}{Ex2_ITKVideoPipelineAnswer.cxx}
+\pause
+
+\item Create frame difference filter
+\lstlistingwithnumber{72}{73}{Ex2_ITKVideoPipelineAnswer.cxx}
+\end{itemize}
+\end{frame}
+}
+
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[fragile]
+\frametitle{Excercise 2: Answer}
+\framesubtitle{Compute frame differences after diffusion}
+\begin{itemize}
+\item Set the frame offset to 1
+\lstlistingwithnumber{79}{79}{Ex2_ITKVideoPipelineAnswer.cxx}
+\pause
+
+\item Connect the pipeline
+\item reader $\rightarrow$ input caster $\rightarrow$ curvature flow
+  $\rightarrow$ output caster $\rightarrow$ frame differ $\rightarrow$ writer
+\lstlistingwithnumber{88}{92}{Ex2_ITKVideoPipelineAnswer.cxx}
+\end{itemize}
+\end{frame}
+}
