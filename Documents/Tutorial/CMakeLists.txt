@@ -57,9 +57,6 @@ add_custom_target(ShortTutorialPresentation ALL
    COMMAND ${PDFLATEX_COMPILER}
         ${ITKOpenCVBridgeTutorialPresentation_SOURCE_DIR}/ITKOpenCVBridgeTutorial.tex
         -output-directory ${ITKOpenCVBridgeTutorialPresentation_BINARY_DIR}
-   COMMAND ${PDFLATEX_COMPILER}
-        ${ITKOpenCVBridgeTutorialPresentation_SOURCE_DIR}/ITKOpenCVBridgeTutorial.tex
-        -output-directory ${ITKOpenCVBridgeTutorialPresentation_BINARY_DIR}
    DEPENDS ${COPY_RESULTS} ${REPORT_ELEMENTS}
    WORKING_DIRECTORY ${ITKOpenCVBridgeTutorialPresentation_BINARY_DIR}
    )
