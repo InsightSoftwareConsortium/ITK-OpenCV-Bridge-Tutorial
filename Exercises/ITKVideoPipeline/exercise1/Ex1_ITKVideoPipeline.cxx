@@ -25,59 +25,54 @@
 #include <itkVideoFileWriter.h>
 #include <itkOpenCVVideoIOFactory.h>
 
-/**
- * Use ITK's Video pipeline to process a video using a median filter on each frame
- */
 int main ( int argc, char **argv )
 {
-
-  // Check arguments
   if( argc < 3 )
     {
-    std::cout << "Usage: " << argv[0] << " <input> <output>" << std::endl;
-    return -1;
+    std::cout << "Usage: " << argv[0] << "input_image output_image" << std::endl;
+    return EXIT_FAILURE;
     }
 
-  // Set up typedefs for ITK
-  const unsigned int Dimension =                                    2;
-  typedef unsigned char                                             InputPixelType;
-  typedef unsigned char                                             OutputPixelType;
-  typedef itk::Image< InputPixelType, Dimension >                   InputFrameType;
-  typedef itk::Image< OutputPixelType, Dimension >                  OutputFrameType;
-  typedef itk::VideoStream< InputFrameType >                        InputVideoType;
-  typedef itk::VideoStream< OutputFrameType >                       OutputVideoType;
-  typedef itk::MedianImageFilter< InputFrameType, OutputFrameType > ImageFilterType;
-  typedef itk::ImageFilterToVideoFilterWrapper< ImageFilterType >   VideoFilterType;
-  typedef itk::VideoFileReader< InputVideoType >                    ReaderType;
-  typedef itk::VideoFileWriter< OutputVideoType >                   WriterType;
+  const unsigned int Dimension =                         2;
+  typedef unsigned char                                  PixelType;
+  typedef itk::Image< PixelType, Dimension >             FrameType;
+  typedef itk::VideoStream< FrameType >                  VideoType;
 
-  // Let the ITK IO factory know that we're using OpenCV for IO
+  typedef itk::VideoFileReader< VideoType >              ReaderType;
+  typedef itk::VideoFileWriter< VideoType >              WriterType;
+  typedef itk::MedianImageFilter< FrameType, FrameType > ImageFilterType;
+  typedef itk::ImageFilterToVideoFilterWrapper< ImageFilterType >
+                                                         VideoFilterType;
+
   itk::ObjectFactoryBase::RegisterFactory( itk::OpenCVVideoIOFactory::New() );
 
-  // Initialize the components of the pipeline
   ReaderType::Pointer reader = ReaderType::New();
   ImageFilterType::Pointer imageFilter = ImageFilterType::New();
   VideoFilterType::Pointer videoFilter = VideoFilterType::New();
   WriterType::Pointer writer = WriterType::New();
 
-  // Set up the reader and writer
   reader->SetFileName( argv[1] );
   writer->SetFileName( argv[2] );
 
-  // Set up the video filter
-  InputFrameType::SizeType neighborhoodRadius;
+  FrameType::SizeType neighborhoodRadius;
   neighborhoodRadius[0] = 10;
   neighborhoodRadius[1] = 10;
   imageFilter->SetRadius( neighborhoodRadius );
   videoFilter->SetImageFilter( imageFilter );
 
-  // Connect the pipeline
   videoFilter->SetInput( reader->GetOutput() );
   writer->SetInput( videoFilter->GetOutput() );
 
-  // Call Update to execute the pipeline
-  writer->Update();
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & excp )
+    {
+    std::cerr << excp << std::endl;
+    return EXIT_FAILURE;
+    }
 
-  return 0;
+  return EXIT_SUCCESS;
 }
 

@@ -28,41 +28,42 @@
 #include <itkVideoFileWriter.h>
 #include <itkOpenCVVideoIOFactory.h>
 
-/**
- * Use ITK's Video pipeline to process a video using a median filter on each frame
- */
 int main ( int argc, char **argv )
 {
-
-  // Check arguments
   if( argc < 3 )
     {
-    std::cout << "Usage: " << argv[0] << " <input> <output>" << std::endl;
-    return -1;
+    std::cout << "Usage: " << argv[0] << "input_image output_image" << std::endl;
+    return EXIT_FAILURE;
     }
 
-  // Set up typedefs for ITK
-  const unsigned int Dimension =                                             2;
-  typedef unsigned char                                                      IOPixelType;
-  typedef float                                                              RealPixelType;
-  typedef itk::Image< IOPixelType, Dimension >                               IOFrameType;
-  typedef itk::Image< RealPixelType, Dimension >                             RealFrameType;
-  typedef itk::VideoStream< IOFrameType >                                    IOVideoType;
-  typedef itk::VideoStream< RealFrameType >                                  RealVideoType;
-  typedef itk::CurvatureFlowImageFilter< RealFrameType, RealFrameType >      ImageFilterType;
-  typedef itk::ImageFilterToVideoFilterWrapper< ImageFilterType >            VideoFilterType;
-  typedef itk::CastImageFilter< IOFrameType, RealFrameType >                 CastImageFilterType;
-  typedef itk::ImageFilterToVideoFilterWrapper< CastImageFilterType >        CastVideoFilterType;
-  typedef itk::RescaleIntensityImageFilter< RealFrameType, IOFrameType >     RescaleImageFilterType;
-  typedef itk::ImageFilterToVideoFilterWrapper< RescaleImageFilterType >     RescaleVideoFilterType;
-  typedef itk::FrameDifferenceVideoFilter< IOVideoType, IOVideoType >        FrameDifferenceFilterType;
-  typedef itk::VideoFileReader< IOVideoType >                                ReaderType;
-  typedef itk::VideoFileWriter< IOVideoType >                                WriterType;
+  const unsigned int Dimension =                 2;
+  typedef unsigned char                          IOPixelType;
+  typedef float                                  RealPixelType;
+  typedef itk::Image< IOPixelType, Dimension >   IOFrameType;
+  typedef itk::Image< RealPixelType, Dimension > RealFrameType;
+  typedef itk::VideoStream< IOFrameType >        IOVideoType;
+  typedef itk::VideoStream< RealFrameType >      RealVideoType;
 
-  // Let the ITK IO factory know that we're using OpenCV for IO
+  typedef itk::VideoFileReader< IOVideoType >    ReaderType;
+  typedef itk::VideoFileWriter< IOVideoType >    WriterType;
+  typedef itk::CastImageFilter< IOFrameType, RealFrameType >
+                                                 CastImageFilterType;
+  typedef itk::ImageFilterToVideoFilterWrapper< CastImageFilterType >
+                                                 CastVideoFilterType;
+  typedef itk::RescaleIntensityImageFilter< RealFrameType, IOFrameType >
+                                                 RescaleImageFilterType;
+  typedef itk::ImageFilterToVideoFilterWrapper< RescaleImageFilterType >
+                                                 RescaleVideoFilterType;
+  typedef itk::CurvatureFlowImageFilter< RealFrameType, RealFrameType >
+                                                 ImageFilterType;
+  typedef itk::ImageFilterToVideoFilterWrapper< ImageFilterType >
+                                                 VideoFilterType;
+
+  typedef itk::FrameDifferenceVideoFilter< IOVideoType, IOVideoType >
+                                                 FrameDifferenceFilterType;
+
   itk::ObjectFactoryBase::RegisterFactory( itk::OpenCVVideoIOFactory::New() );
 
-  // Initialize the components of the pipeline
   ReaderType::Pointer reader = ReaderType::New();
   WriterType::Pointer writer = WriterType::New();
   ImageFilterType::Pointer imageFilter = ImageFilterType::New();
@@ -73,32 +74,34 @@ int main ( int argc, char **argv )
   RescaleVideoFilterType::Pointer videoRescaler = RescaleVideoFilterType::New();
   FrameDifferenceFilterType::Pointer frameDifferenceFilter = FrameDifferenceFilterType::New();
 
-  // Set up the reader and writer
   reader->SetFileName( argv[1] );
   writer->SetFileName( argv[2] );
 
-  // Set up the frame difference filter to use adjacent frames
   frameDifferenceFilter->SetFrameOffset(1);
 
-  // Set up the caster and rescaler
   videoCaster->SetImageFilter( imageCaster );
   videoRescaler->SetImageFilter( imageRescaler );
 
-  // Set up the video filter
   imageFilter->SetTimeStep( 0.5 );
   imageFilter->SetNumberOfIterations( 20 );
   videoFilter->SetImageFilter( imageFilter );
 
-  // Connect the pipeline
   videoCaster->SetInput( reader->GetOutput() );
   videoFilter->SetInput( videoCaster->GetOutput() );
   videoRescaler->SetInput( videoFilter->GetOutput() );
   frameDifferenceFilter->SetInput( videoRescaler->GetOutput() );
   writer->SetInput( frameDifferenceFilter->GetOutput() );
 
-  // Call Update to execute the pipeline
-  writer->Update();
+  try
+    {
+    writer->Update();
+    }
+  catch( itk::ExceptionObject & excp )
+    {
+    std::cerr << excp << std::endl;
+    return EXIT_FAILURE;
+    }
 
-  return 0;
+  return EXIT_SUCCESS;
 }
 
