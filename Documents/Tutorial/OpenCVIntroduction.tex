@@ -7,13 +7,29 @@ OpenCV Introduction
 
 
 \begin{frame}
-\frametitle{OpenCV}
+\frametitle{OpenCV Overview}
 \begin{center}
+\begin{columns}[c]
+\column{0.8\textwidth}
 \begin{itemize}
-\item We will be using OpenCV 2.2 (from subversion)
-\item The new C++ interface will be used when possible
+\item What is OpenCV?  OpenCV is \ldots
+  \begin{itemize}
+  \item an open source computer vision library.
+  \item written in C, but has C++ and Python APIs.
+  \item released under a BSD license.
+  \item supported and guided by Willow Garage.
+  \item found at \url{http://opencv.willowgarage.com/wiki/}.
+  \end{itemize}
+\end{itemize}
+\column{0.2\textwidth}
+ \includegraphics[width=0.8\textwidth]{OpenCVLogo.png}
+\end{columns}
+\pause
+\begin{itemize}
+\item We will be using OpenCV 2.2 (from subversion).
+\item The new C++ interface will be used when possible.
 \item We assume you have some prior experience with OpenCV
-\item \ldots but we will cover the basics in case you don't
+\item \ldots but we will cover the basics in case you don't.
 \end{itemize}
 \end{center}
 \end{frame}
@@ -83,11 +99,13 @@ Note: {\tt argv[0]} contains the executable name
 \begin{itemize}
 \item A title string is used to identify the GUI window.
 \lstlistingwithnumber{40}{40}{BasicFilteringOpenCV.cxx}
+\pause
 \item Create a named window.
   \begin{itemize}
   \item {\tt\small CV\_WINDOW\_FREERATIO} is needed for display using OpenGL.
   \end{itemize}
 \lstlistingwithnumber{41}{41}{BasicFilteringOpenCV.cxx}
+\pause
 \item Resize the window to match the image size.
   \begin{itemize}
   \item {\tt\small cvResizeWindow()} is a C function with no C++ API equivalent.
@@ -108,6 +126,7 @@ Note: {\tt argv[0]} contains the executable name
 \begin{itemize}
 \item Show the image in the previously created window.
 \lstlistingwithnumber{43}{43}{BasicFilteringOpenCV.cxx}
+\pause
 \item Wait for the user to press a key, then continue.
 \lstlistingwithnumber{44}{44}{BasicFilteringOpenCV.cxx}
 \end{itemize}
@@ -215,9 +234,11 @@ void cvtColor(const Mat& src, Mat& dst, int code);
 \begin{itemize}
 \item This function processes the video and displays the results.
 \lstlistingwithnumber{35}{36}{BasicVideoFilteringOpenCV.cxx}
+\pause
 \item Use the {\tt\small get()} member function to access video properties: \\
       frame rate, width, and height.
 \lstlistingwithnumber{37}{39}{BasicVideoFilteringOpenCV.cxx}
+\pause
 \item Setup the HighGUI window as in the previous example.
 \lstlistingwithnumber{41}{43}{BasicVideoFilteringOpenCV.cxx}
 \end{itemize}
@@ -232,6 +253,7 @@ void cvtColor(const Mat& src, Mat& dst, int code);
 \begin{itemize}
 \item Number of milliseconds to wait before drawing the next frame.
 \lstlistingwithnumber{45}{45}{BasicVideoFilteringOpenCV.cxx}
+\pause
 \item Loop until no more frames can be read from the video capture object.
 \lstlistingwithnumber{47}{57}{BasicVideoFilteringOpenCV.cxx}
 \item Call {\tt\small processFrame()} on each frame and and display the result.
@@ -249,8 +271,10 @@ void cvtColor(const Mat& src, Mat& dst, int code);
 \begin{itemize}
 \item This function processes the video and saves the results.
 \lstlistingwithnumber{62}{63}{BasicVideoFilteringOpenCV.cxx}
+\pause
 \item Get the video properties as before.
 \lstlistingwithnumber{64}{66}{BasicVideoFilteringOpenCV.cxx}
+\pause
 \item Specify that the output video will be encoded in DIVX format.
 \item Create a video writer object with the specified filename.
 \lstlistingwithnumber{68}{70}{BasicVideoFilteringOpenCV.cxx}
