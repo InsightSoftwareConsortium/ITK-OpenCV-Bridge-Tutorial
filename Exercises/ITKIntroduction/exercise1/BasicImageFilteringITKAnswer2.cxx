@@ -36,8 +36,8 @@ int main( int argc, char * argv [] )
   typedef   unsigned char  OutputPixelType;
 
   typedef itk::Image< InputPixelType,  2 >   InputImageType;
-  typedef itk::Image< OutputPixelType, 2 >   OutputImageType;
   typedef itk::Image< RealPixelType,   2 >   RealImageType;
+  typedef itk::Image< OutputPixelType, 2 >   OutputImageType;
 
   typedef itk::ImageFileReader< InputImageType  >  ReaderType;
   typedef itk::ImageFileWriter< OutputImageType >  WriterType;
