@@ -97,13 +97,40 @@ output to a writer
 \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
 \frametitle{Running the Example}
+\framesubtitle{ITKOpenCVBridge/exercise1/BasicFilteringITKOpenCVBridge.cxx}
+\begin{itemize}
+\item Run the example with the following command
+\begin{verbatim}
+      ./BasicFilteringITKOpenCVBridge     \
+      ~/data/mandrillgray.png             \
+      ./mandrillgrayMedian.png 
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Viewing the Results}
 \framesubtitle{ITKOpenCVBridge/exercise1/BasicFilteringITKOpenCVBridge.cxx}
 \begin{itemize}
 \item Running the example the same way as before, we see a nicely
 median-filtered image.
+\end{itemize}
+\begin{columns}[c]
+\column{0.33\textwidth}
+\begin{center}
+\includegraphics[width=1\textwidth]{mandrilgray.png} \\
+Original
+\end{center}
+\column{0.33\textwidth}
+\begin{center}
+\includegraphics[width=1\textwidth]{OpenCVITKex1.png} \\
+Median Filter
+\end{center}
+\end{columns}
 \pause
+\begin{itemize}
 \item Now, the fun part. Let's modify our example to use Curvature Flow, an
 anisotropic diffusion filter built into ITK.
 \end{itemize}
@@ -153,6 +180,19 @@ anisotropic diffusion filter built into ITK.
 \item The final pipeline should look like this:
 \lstlistingwithnumber{35}{35}{BasicFilteringITKOpenCVBridgeAnswer.cxx}
 \lstlistingwithnumber{46}{62}{BasicFilteringITKOpenCVBridgeAnswer.cxx}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Running the Answer}
+\framesubtitle{ITKOpenCVBridge/exercise1/BasicFilteringITKOpenCVBridgeAnswer.cxx}
+\begin{itemize}
+\item Run the answer with the following command
+\begin{verbatim}
+      ./BasicFilteringITKOpenCVBridgeAnswer     \
+      ~/data/mandrillgray.png                   \
+      ./mandrillgrayCurvatureFlow.png 
+\end{verbatim}
 \end{itemize}
 \end{frame}
 
@@ -210,6 +250,19 @@ Basic Video Filtering (Revisited)
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Running the Example}
+\framesubtitle{ITKOpenCVBridge/exercise2/BasicVideoFilteringITKOpenCVBridge.cxx}
+\begin{itemize}
+\item Run the example with the following command
+\begin{verbatim}
+      ./BasicVideoFilteringITKOpenCVBridge     \
+      ~/data/Walk1.mpg                         \
+      ./Walk1Median.mpg
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
 \begin{frame}
 \begin{itemize}
 \frametitle{Exercise 2}
@@ -247,7 +300,20 @@ cast image filter for producing output
 \begin{itemize}
 \frametitle{Exercise 2: Answer}
 \framesubtitle{ITKOpenCVBridge/exercise2/BasicVideoFilteringITKOpenCVBridgeAnswer.cxx}
-\item Your new ITK pipeline will look like this:
+\item With the following code for output purposes:
 \lstlistingwithnumber{69}{74}{BasicVideoFilteringITKOpenCVBridgeAnswer.cxx}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Running the Answer}
+\framesubtitle{ITKOpenCVBridge/exercise2/BasicVideoFilteringITKOpenCVBridgeAnswer.cxx}
+\begin{itemize}
+\item Run the answer with the following command
+\begin{verbatim}
+      ./BasicVideoFilteringITKOpenCVBridgeAnswer   \
+      ~/data/Walk1.mpg                             \
+      ./Walk1Edges.mpg
+\end{verbatim}
 \end{itemize}
 \end{frame}
