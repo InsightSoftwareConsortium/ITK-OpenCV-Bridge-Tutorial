@@ -25,21 +25,21 @@ ITK Video Filters
 \setbeamertemplate{navigation symbols}{}
 \begin{frame}[fragile]
 \frametitle{Video Filtering - Median Filter}
-\framesubtitle{ITKVideoPipeline/exercise1/Ex1\_ITKVideoPipeline.cxx}
+\framesubtitle{ITKVideoPipeline/exercise1/ITKVideoSingleFrameFilters.cxx}
 
 \begin{itemize}
 \item Video data structure
-\lstlistingwithnumber{21}{21}{Ex1_ITKVideoPipeline.cxx}
+\lstlistingwithnumber{21}{21}{ITKVideoSingleFrameFilters.cxx}
 \pause
 
 \item Video file reader and writer
 \item Use OpenCV for video IO
-\lstlistingwithnumber{24}{26}{Ex1_ITKVideoPipeline.cxx}
+\lstlistingwithnumber{24}{26}{ITKVideoSingleFrameFilters.cxx}
 \pause
 
 \item Median image filter
 \item Image filter $\rightarrow$ video filter wrapper
-\lstlistingwithnumber{22}{23}{Ex1_ITKVideoPipeline.cxx}
+\lstlistingwithnumber{22}{23}{ITKVideoSingleFrameFilters.cxx}
 \end{itemize}
 \end{frame}
 }
@@ -48,19 +48,19 @@ ITK Video Filters
 \setbeamertemplate{navigation symbols}{}
 \begin{frame}[fragile]
 \frametitle{Video Filtering - Median Filter}
-\framesubtitle{ITKVideoPipeline/exercise1/Ex1\_ITKVideoPipeline.cxx}
+\framesubtitle{ITKVideoPipeline/exercise1/ITKVideoSingleFrameFilters.cxx}
 \begin{itemize}
 \item Types for data structures
-\lstlistingwithnumber{36}{39}{Ex1_ITKVideoPipeline.cxx}
+\lstlistingwithnumber{36}{39}{ITKVideoSingleFrameFilters.cxx}
 \pause
 
 \item Types reader and writer
-\lstlistingwithnumber{41}{42}{Ex1_ITKVideoPipeline.cxx}
+\lstlistingwithnumber{41}{42}{ITKVideoSingleFrameFilters.cxx}
 \pause
 
 \item Types for video median filter
 \item Use image filter type to define video filter type
-\lstlistingwithnumber{43}{45}{Ex1_ITKVideoPipeline.cxx}
+\lstlistingwithnumber{43}{45}{ITKVideoSingleFrameFilters.cxx}
 \end{itemize}
 \end{frame}
 }
@@ -69,14 +69,14 @@ ITK Video Filters
 \setbeamertemplate{navigation symbols}{}
 \begin{frame}[fragile]
 \frametitle{Video Filtering - Median Filter}
-\framesubtitle{ITKVideoPipeline/exercise1/Ex1\_ITKVideoPipeline.cxx}
+\framesubtitle{ITKVideoPipeline/exercise1/ITKVideoSingleFrameFilters.cxx}
 \begin{itemize}
 \item Create reader and writer
-\lstlistingwithnumber{47}{48}{Ex1_ITKVideoPipeline.cxx}
+\lstlistingwithnumber{47}{48}{ITKVideoSingleFrameFilters.cxx}
 \pause
 
 \item Create image filter and video median filters
-\lstlistingwithnumber{49}{50}{Ex1_ITKVideoPipeline.cxx}
+\lstlistingwithnumber{49}{50}{ITKVideoSingleFrameFilters.cxx}
 \end{itemize}
 \end{frame}
 }
@@ -85,16 +85,16 @@ ITK Video Filters
 \setbeamertemplate{navigation symbols}{}
 \begin{frame}[fragile]
 \frametitle{Video Filtering - Median Filter}
-\framesubtitle{ITKVideoPipeline/exercise1/Ex1\_ITKVideoPipeline.cxx}
+\framesubtitle{ITKVideoPipeline/exercise1/ITKVideoSingleFrameFilters.cxx}
 \begin{itemize}
 \item Set up reader and writer
 \item Tell ITK that we're using OpenCV for IO
-\lstlistingwithnumber{52}{54}{Ex1_ITKVideoPipeline.cxx}
+\lstlistingwithnumber{52}{54}{ITKVideoSingleFrameFilters.cxx}
 \pause
 
 \item Set up radius for (image) median filter
 \item Set video filter wrapper to use image median filter internally
-\lstlistingwithnumber{56}{60}{Ex1_ITKVideoPipeline.cxx}
+\lstlistingwithnumber{56}{60}{ITKVideoSingleFrameFilters.cxx}
 \end{itemize}
 \end{frame}
 }
@@ -103,15 +103,15 @@ ITK Video Filters
 \setbeamertemplate{navigation symbols}{}
 \begin{frame}[fragile]
 \frametitle{Video Filtering - Median Filter}
-\framesubtitle{ITKVideoPipeline/exercise1/Ex1\_ITKVideoPipeline.cxx}
+\framesubtitle{ITKVideoPipeline/exercise1/ITKVideoSingleFrameFilters.cxx}
 \begin{itemize}
 \item Connect the pipeline
 \item reader $\rightarrow$ videoFilter $\rightarrow$ writer
-\lstlistingwithnumber{62}{63}{Ex1_ITKVideoPipeline.cxx}
+\lstlistingwithnumber{62}{63}{ITKVideoSingleFrameFilters.cxx}
 \pause
 
 \item Try calling Update() to process the entire video
-\lstlistingwithnumber{65}{73}{Ex1_ITKVideoPipeline.cxx}
+\lstlistingwithnumber{65}{73}{ITKVideoSingleFrameFilters.cxx}
 \end{itemize}
 \end{frame}
 }
@@ -136,7 +136,7 @@ ITK Video Filters
 
 \item Hint 3: Curvature Flow does not take a radius parameter. It's
   salient functions are:
-\lstlistingwithnumber{78}{79}{Ex1_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{70}{71}{ITKVideoSingleFrameFiltersAnswer.cxx}
 \pause
 
 \item Hint 4: To use an image filter in a video pipeline use
@@ -152,11 +152,11 @@ ITK Video Filters
 \framesubtitle{Replace median filter with curvature flow filter}
 \begin{itemize}
 \item Include curvature and cast image filters
-\lstlistingwithnumber{22}{23}{Ex1_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{22}{23}{ITKVideoSingleFrameFiltersAnswer.cxx}
 \pause
 
 \item Re-define types using seperate IO and Real pixel types
-\lstlistingwithnumber{36}{43}{Ex1_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{37}{43}{ITKVideoSingleFrameFiltersAnswer.cxx}
 \end{itemize}
 \end{frame}
 }
@@ -168,12 +168,12 @@ ITK Video Filters
 \framesubtitle{Replace median filter with curvature flow filter}
 \begin{itemize}
 \item Define cast filter to convert from Real to IO pixel type
-\lstlistingwithnumber{47}{50}{Ex1_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{47}{50}{ITKVideoSingleFrameFiltersAnswer.cxx}
 \pause
 
 \item Replace median filter with curvature flow filter
 \item Use Real pixel type for output
-\lstlistingwithnumber{51}{54}{Ex1_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{51}{54}{ITKVideoSingleFrameFiltersAnswer.cxx}
 \end{itemize}
 \end{frame}
 }
@@ -185,17 +185,17 @@ ITK Video Filters
 \framesubtitle{Replace median filter with curvature flow filter}
 \begin{itemize}
 \item Set up video cast filter
-\lstlistingwithnumber{68}{68}{Ex1_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{68}{68}{ITKVideoSingleFrameFiltersAnswer.cxx}
 \pause
 
 \item Set up curvature flow filter
-\lstlistingwithnumber{70}{72}{Ex1_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{70}{72}{ITKVideoSingleFrameFiltersAnswer.cxx}
 \pause
 
 \item Connect the pipeline
 \item reader $\rightarrow$ curvature
   flow $\rightarrow$ output caster $\rightarrow$ writer
-\lstlistingwithnumber{74}{76}{Ex1_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{74}{76}{ITKVideoSingleFrameFiltersAnswer.cxx}
 \end{itemize}
 \end{frame}
 }
@@ -210,14 +210,14 @@ ITK Video Filters
 \frametitle{Excercise 2}
 \framesubtitle{Compute frame differences after diffusion}
 \begin{itemize}
-\item Start with solution to Excersize 1 (Ex2\_ITKVideoPipeline.cxx)
+\item Start with solution to Excersize 1 (ITKVideoMultiFrameFilters.cxx)
 \pause
 
 \item Hint 1: Use FrameDifferenceVideoFilter
 \pause
 
 \item Hint 2: Difference filter's important parameter is:
-\lstlistingwithnumber{73}{73}{Ex2_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{73}{73}{ITKVideoMultiFrameFiltersAnswer.cxx}
 \item This sets the spacing of the frames to be differenced. Setting
   it to 1 means adjacent frames will be used.
 \end{itemize}
@@ -231,16 +231,16 @@ ITK Video Filters
 \framesubtitle{Compute frame differences after diffusion}
 \begin{itemize}
 \item Include frame difference filter
-\lstlistingwithnumber{25}{25}{Ex2_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{25}{25}{ITKVideoMultiFrameFiltersAnswer.cxx}
 \pause
 
 \item Define type for frame difference filter
 \item Since this is a native video filter, no wrapper is necessary
-\lstlistingwithnumber{57}{58}{Ex2_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{57}{58}{ITKVideoMultiFrameFiltersAnswer.cxx}
 \pause
 
 \item Create frame difference filter
-\lstlistingwithnumber{66}{67}{Ex2_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{66}{67}{ITKVideoMultiFrameFiltersAnswer.cxx}
 \end{itemize}
 \end{frame}
 }
@@ -252,13 +252,13 @@ ITK Video Filters
 \framesubtitle{Compute frame differences after diffusion}
 \begin{itemize}
 \item Set the frame offset to 1
-\lstlistingwithnumber{73}{73}{Ex2_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{73}{73}{ITKVideoMultiFrameFiltersAnswer.cxx}
 \pause
 
 \item Connect the pipeline
 \item reader $\rightarrow$ curvature flow $\rightarrow$ output caster
   $\rightarrow$ frame differ $\rightarrow$ writer
-\lstlistingwithnumber{81}{84}{Ex2_ITKVideoPipelineAnswer.cxx}
+\lstlistingwithnumber{81}{84}{ITKVideoMultiFrameFiltersAnswer.cxx}
 \end{itemize}
 \end{frame}
 }
