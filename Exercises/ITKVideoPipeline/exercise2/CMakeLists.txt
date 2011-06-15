@@ -3,11 +3,11 @@
 #
 
 # ITKVideoPipeline
-add_executable(Ex2_ITKVideoPipeline 
-  Ex2_ITKVideoPipeline.cxx )
-target_link_libraries(Ex2_ITKVideoPipeline ${ITK_LIBRARIES})
+add_executable(ITKVideoMultiFrameFilters 
+  ITKVideoMultiFrameFilters.cxx )
+target_link_libraries(ITKVideoMultiFrameFilters ${ITK_LIBRARIES})
 
 # ITKVideoPipeline
-add_executable(Ex2_ITKVideoPipelineAnswer 
-  Ex2_ITKVideoPipelineAnswer.cxx )
-target_link_libraries(Ex2_ITKVideoPipelineAnswer ${ITK_LIBRARIES})
+add_executable(ITKVideoMultiFrameFiltersAnswer 
+  ITKVideoMultiFrameFiltersAnswer.cxx )
+target_link_libraries(ITKVideoMultiFrameFiltersAnswer ${ITK_LIBRARIES})
