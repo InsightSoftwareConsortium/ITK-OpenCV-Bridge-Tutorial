@@ -200,6 +200,22 @@ ITK Video Filters
 \end{frame}
 }
 
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[fragile]
+\frametitle{Running the Example}
+\framesubtitle{/home/tutorial/bin/ITK-OpenCV-Bridge-Tutorial/Exercises/ITKVideoPipeline}
+\begin{itemize}
+\item Run the example with the following command
+\begin{verbatim}
+      ./exercise1/ITKVideoSingleFrameFilters \
+      ~/data/Walk1_short.avi                 \
+      ./Walk1_short_median.avi 
+\end{verbatim}
+\end{itemize}
+\end{frame}
+}
+
 
 %%%%
 % Excersize 2
@@ -259,6 +275,22 @@ ITK Video Filters
 \item reader $\rightarrow$ curvature flow $\rightarrow$ output caster
   $\rightarrow$ frame differ $\rightarrow$ writer
 \lstlistingwithnumber{81}{84}{ITKVideoMultiFrameFiltersAnswer.cxx}
+\end{itemize}
+\end{frame}
+}
+
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[fragile]
+\frametitle{Running the Answer}
+\framesubtitle{/home/tutorial/bin/ITK-OpenCV-Bridge-Tutorial/Exercises/ITKVideoPipeline}
+\begin{itemize}
+\item Run the example with the following command
+\begin{verbatim}
+      ./exercise2/ITKVideoMultiFrameFiltersAnswer \
+      ~/data/Walk1_short.avi                      \
+      ./Walk1_short_diff.avi 
+\end{verbatim}
 \end{itemize}
 \end{frame}
 }
