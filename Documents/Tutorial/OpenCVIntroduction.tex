@@ -170,13 +170,15 @@ void cvtColor(const Mat& src, Mat& dst, int code);
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[fragile]
 \frametitle{Exercise 1: Answer}
 \framesubtitle{OpenCVIntroduction/exercise1/BasicFilteringOpenCVAnswer.cxx}
 \begin{center}
-\begin{itemize}
 \lstlistingwithnumber{34}{38}{BasicFilteringOpenCVAnswer.cxx}
+\begin{itemize}
+\item Run \verb|./BasicFilteringOpenCV ~/data/mandrill.png|
 \end{itemize}
+\pause
 \begin{columns}[c]
 \column{0.5\textwidth}
 \begin{center}
@@ -321,5 +323,30 @@ Canny Edges
 \item Hint: Use {\tt\small cvtColor()} again to convert back to color.
 \item Use code {\tt\small CV\_GRAY2BGR} for {\tt\small code} to convert gray to BGR.
 \end{itemize}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Exercise 2: Answer}
+\framesubtitle{OpenCVIntroduction/exercise2/BasicVideoFilteringOpenCVAnswer.cxx}
+\begin{center}
+\lstlistingwithnumber{27}{35}{BasicVideoFilteringOpenCVAnswer.cxx}
+\begin{itemize}
+\item Run \verb|./BasicVideoFilteringOpenCV ~/data/Walk1.mpg|
+\end{itemize}
+\pause
+\begin{columns}[c]
+\column{0.5\textwidth}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{OpenCVex2-ans-GUI.png} \\
+HighGUI Display
+\end{center}
+\column{0.5\textwidth}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{OpenCVex2-ans-save.png} \\
+Saved Video (Opened in vlc)
+\end{center}
+\end{columns}
 \end{center}
 \end{frame}
