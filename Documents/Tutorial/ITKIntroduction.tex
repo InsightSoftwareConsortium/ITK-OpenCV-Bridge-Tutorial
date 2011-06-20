@@ -154,10 +154,12 @@ You will typically do:
 \item Create a binary directory
 \begin{verbatim}
 cd ~/bin
-mkdir itkexercise1
-cd itkexercise1
+mkdir itkexercise1b
+cd itkexercise1b
 \end{verbatim}
 \end{itemize}
+\vspace{1in}
+\textcolor{gray}{For convenience, a pre-built version is available in \texttt{\textasciitilde/bin/itkexercise1}}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -194,8 +196,8 @@ cd itkexercise1
   \includegraphics[width=0.4\paperwidth]{Screenshot-CMakeGUI-03.png}
 \end{center}
 \begin{itemize}
-\item Because the project needs ITK
-\item and we have not provided ITK\_DIR yet
+\item Because the project needs ITK and OpenCV
+\item and we have not provided ITK\_DIR or OpenCV\_DIR yet
 \end{itemize}
 \end{frame}
 
@@ -206,6 +208,9 @@ cd itkexercise1
 \begin{itemize}
 \item Provide the path to ITK in the ITK\_DIR variable
 \item /home/tutorial/bin/ITKVideo/Release
+\pause
+\item Provide the path to OpenCV in the OpenCV\_DIR variable
+\item /home/tutorial/bin/opencv/Release
 \end{itemize}
 \begin{center}
   \includegraphics[width=0.7\paperwidth]{Screenshot-CMakeGUI-04.png}
@@ -230,7 +235,7 @@ cd itkexercise1
 \begin{itemize}
 \item In the command line do:
 \begin{verbatim}
-cd  /home/tutorial/bin/itkexercise1
+cd  /home/tutorial/bin/itkexercise1b
 make
 \end{verbatim}
 \end{itemize}
@@ -238,11 +243,11 @@ make
 
 \begin{frame}[fragile]
 \frametitle{How to Run}
-\framesubtitle{/home/tutorial/bin/itkexercise1}
+\framesubtitle{/home/tutorial/bin/itkexercise1b}
 \begin{itemize}
 \item While in the binary directory:
 \begin{verbatim}
-/home/tutorial/bin/itkexercise1
+/home/tutorial/bin/itkexercise1b
 \end{verbatim}
 \item In the command line type:
 \begin{verbatim}
@@ -311,7 +316,7 @@ eog ./mandrillgrayMedian.png &
 \begin{itemize}
 \item In the command line do:
 \begin{verbatim}
-cd  /home/tutorial/bin/itkexercise1
+cd  /home/tutorial/bin/itkexercise1b
 make
 \end{verbatim}
 \end{itemize}
@@ -319,11 +324,11 @@ make
 
 \begin{frame}[fragile]
 \frametitle{How to Run}
-\framesubtitle{/home/tutorial/bin/itkexercise1}
+\framesubtitle{/home/tutorial/bin/itkexercise1b}
 \begin{itemize}
 \item While in the binary directory:
 \begin{verbatim}
-/home/tutorial/bin/itkexercise1
+/home/tutorial/bin/itkexercise1b
 \end{verbatim}
 \item In the command line type:
 \begin{verbatim}
@@ -445,11 +450,11 @@ cd ~/bin/ITK-OpenCV-Bridge-Tutorial/Exercises
 
 \begin{frame}[fragile]
 \frametitle{How to Run}
-\framesubtitle{/home/tutorial/bin/itkexercise1}
+\framesubtitle{/home/tutorial/bin/itkexercise1b}
 \begin{itemize}
 \item While in the binary directory:
 \begin{verbatim}
-/home/tutorial/bin/itkexercise1
+/home/tutorial/bin/itkexercise1b
 \end{verbatim}
 \pause
 \item In the command line type:
