@@ -1,6 +1,6 @@
 find_package(ITK REQUIRED )
 if(ITK_FOUND)
-  include(${USE_ITK_FILE})
+  include(${ITK_USE_FILE})
 endif()
 
 find_package(OpenCV REQUIRED)
